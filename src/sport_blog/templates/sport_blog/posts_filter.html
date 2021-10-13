@@ -1,0 +1,43 @@
+{% extends 'sport_blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content%}
+
+
+<div class="content">
+    <h2>Колличество постов: {{ cnt }}</h2>
+    <h1>Посты</h1>
+    <hr>
+    <form method="GET">
+        {{ filter.form | crispy}}
+        <br>
+        <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-search">Поиск</span>
+        </button>
+    </form>
+
+    {% for post in post_list %}
+    <div class="post">
+        <br>
+        <h4>
+            {{ forloop.counter }}) <a href="{% url 'post_show' post_id=post.id %}">{{ post.title }}</a>
+        </h4>
+        <p>{{ post.content }}</p>
+    </div>
+    <hr>
+    {% endfor %}
+</div>
+
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="?page=1{{ get_params }}">1</a></li>
+        <li class="page-item"><a class="page-link" href="?page=2{{ get_params }}">2</a></li>
+        <li class="page-item"><a class="page-link" href="?page=3{{ get_params }}">3</a></li>
+        <li class="page-item"><a class="page-link" href="?page=4{{ get_params }}">4</a></li>
+    </ul>
+</nav>
+
+{% endblock%}

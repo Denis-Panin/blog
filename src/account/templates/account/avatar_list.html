@@ -1,0 +1,17 @@
+{% extends 'account/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content%}
+
+{% for avatar in object_list %}
+<div>
+    {{ avatar.file_path}} <br>
+    <img src= "{{ avatar.file_path.url }}" alt="" width="150">
+</div>
+<hr>
+{% endfor %}
+
+{% endblock%}

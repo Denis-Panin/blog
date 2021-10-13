@@ -1,0 +1,56 @@
+{% extends 'sport_blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content%}
+
+<div class="content">
+    <h2>Колличество книг: {{ cnt }}</h2>
+    <h1>Книги</h1>
+
+    <form method="GET">
+        {{ filter.form | crispy }}
+        <br>
+        <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-search">Поиск</span>
+        </button>
+    </form>
+
+    <h1>Все книги</h1>
+
+    <div class="payload">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">ID Книги</th>
+                <th scope="col">Название</th>
+                <th scope="col">Имя автора</th>
+                <th scope="col">Категория</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in book_list %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>[{{ book.author.name }}]</td>
+                <td>--{{ book.category.name }}--</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="?page=1{{ get_params }}">1</a></li>
+        <li class="page-item"><a class="page-link" href="?page=2{{ get_params }}">2</a></li>
+        <li class="page-item"><a class="page-link" href="?page=3{{ get_params }}">3</a></li>
+        <li class="page-item"><a class="page-link" href="?page=4{{ get_params }}">4</a></li>
+        <li class="page-item"><a class="page-link" href="?page=5{{ get_params }}">5</a></li>
+    </ul>
+</nav>
+
+{% endblock%}

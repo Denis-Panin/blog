@@ -1,0 +1,78 @@
+version: "3.8"
+
+services:
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - "8777:80"
+      - "443:443"
+    depends_on:
+      - backend
+
+  backend:
+    build: .
+    container_name: sport_blog-backend
+    #    command: python ./src/manage.py runserver 0.0.0.0:8111
+    #    command: ./commands/wsgi_${SERVER_MODE}.sh
+    command: make ${RUN_COMMAND}
+    tty: true
+    stdin_open: true
+    restart: always
+    ports:
+      - "8888:8000"
+    volumes:
+      - ./:/srv/project
+    depends_on:
+      - memcached
+      - rabbitmq
+      - postgres
+    env_file: .env
+
+  memcached:
+    image: memcached:1.6.9
+    container_name: memcached
+    tty: true
+    stdin_open: true
+    restart: always
+
+  rabbitmq:
+    image: rabbitmq:3.8-rc-management
+    container_name: rabbitmq
+    tty: true
+    stdin_open: true
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "15672:15672"
+
+  postgres:
+    image: postgres:12
+    container_name: sport_blog-db
+    tty: true
+    stdin_open: true
+    restart: always
+    env_file: .env
+
+  celery:
+    build: .
+    container_name: celery
+    command: make celery
+    restart: always
+    env_file: .env
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./:/srv/project
+
+  celerybeat:
+    build: .
+    container_name: celerybeat
+    command: make celerybeat
+    restart: always
+    env_file: .env
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./:/srv/project

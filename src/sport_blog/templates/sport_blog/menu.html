@@ -1,0 +1,43 @@
+<aside>
+    <nav class="dws-menu">
+        <ul>
+            <li><a href="{% url 'home_page' %}"><i class="fas fa-home"></i>Главная</a></li>
+            <li><a href="#"><i class="fas fa-file-alt"></i>Посты</a>
+                <ul>
+                    <li><a href="{% url 'posts_list' %}">Все посты</a></li>
+                    <li><a href="{% url 'posts_create' %}">Создать пост</a></li>
+                    <li><a href="{% url 'posts_list_csv' %}">Выгрузка постов в CSV</a></li>
+                </ul>
+            </li>
+            <li><a href="{% url 'book_list' %}"><i class="fas fa-book"></i> Все книги</a></li>
+            <li><a href="{% url 'categories_all' %}"><i class="fas fa-list"></i> Все категории</a></li>
+            <li><a href="#"><i class="fas fa-users"></i>Люди</a>
+                <ul>
+                    <li><a href="{% url 'subscribers' %}">Все подписчики</a></li>
+                    <li><a href="{% url 'authors_new' %}">Генератор автора</a></li>
+                    <li><a href="{% url 'authors_all' %}">Все авторы</a></li>
+                    <li><a href="{% url 'subscriber_add' %}">Подписаться на Автора</a></li>
+                </ul>
+            </li>
+            <li><a href="{% url 'about' %}"><i class="fas fa-address-card"></i>О нас</a>
+                <ul>
+                    <li><a href="{% url 'contact-us-create' %}">Cвяжитесь с нами</a></li>
+                    <li><a href="{% url 'contact-us-list' %}">Обратная связь</a>
+                </ul>
+            </li>
+            <li><a href="{% url 'account:sign_up' %}"><i class="fas fa-user-plus"></i> Регистрация</a></li>
+            {% if request.user.is_authenticated %}
+            <li><a href="#"><i class="fas fa-user-edit"></i> Личный кабинет</a>
+                <ul>
+                    <li><a href="{% url 'account:view_my_profile' %}"> Помотреть профиль</a></li>
+                    <li><a href="{% url 'account:my_profile' %}"> Редактровать профиль</a></li>
+                    <li><a href="{% url 'account:my_profile_avatar_create' %}"> Добавить аватар</a></li>
+                    <li><a href="{% url 'account:my_profile_avatar_list' %}"> Список аватарок</a></li>
+                </ul>
+            </li>
+            {% endif %}
+
+
+        </ul>
+    </nav>
+</aside>

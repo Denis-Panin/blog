@@ -1,0 +1,35 @@
+{% extends 'sport_blog/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content%}
+
+
+<div class="content">
+
+    <h1>Все подписчики</h1>
+
+    <div class="payload">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">ID подписчика</th>
+                <th scope="col">Email подписчика</th>
+                <th scope="col">Автор</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for SUB in subs %}
+            <tr>
+                <td scope="row">{{ SUB.id }}</td>
+                <td>[{{ SUB.email_to }}]</td>
+                <td>{{ SUB.author_id }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock%}

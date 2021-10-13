@@ -1,0 +1,29 @@
+{% extends 'sport_blog/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content%}
+{% load static%}
+<div>
+
+    <h1>{{ title}}</h1>
+    <br>
+    <div class="payload">
+        <span class="grey summary">{{ post.description }}</span>
+        <div class="post_content">
+            {{ post.content }}
+        </div>
+        <br>
+        <div class="update link">
+            <a href="{% url 'post_update' post_id=post.id %}" class="btn btn-info">Редактировать</a>
+        </div>
+        <br>
+        <div class="update link">
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'post_delete' post.id %}" class="btn btn-danger">Удалить статью</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock%}

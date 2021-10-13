@@ -1,0 +1,44 @@
+{% extends 'sport_blog/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content%}
+
+
+<div class="content text-center">
+
+    <h1>Все авторы</h1>
+    <br>
+    <div class="payload">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">ID автора</th>
+                <th scope="col">Автор</th>
+                <th scope="col">Email автора</th>
+                <th scope="col">Количество книг</th>
+                {% if request.user.is_authenticated %}
+                <th scope="col">Удалить</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for author in authors %}
+            <tr>
+                <td scope="row">{{ author.id }}</td>
+                <td>{{ author.name }}</td>
+                <td>[{{ author.email }}]</td>
+                <td>{{ author.books.count }}</td>
+                {% if request.user.is_authenticated %}
+                <td><a href="{% url 'author_delete' author.id %}" class="btn btn-danger">Удалить автора</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock%}

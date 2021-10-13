@@ -1,0 +1,27 @@
+{% extends 'account/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content%}
+
+{% for user in object_list %}
+    <td>{{ user.first_name }}</td>
+    <br>
+    <td>[{{ user.email }}]</td>
+
+    <h1>{{ object.headline }}</h1>
+    <p>{{ object.content }}</p>
+{% endfor %}
+
+
+{% for avatar in object_list %}
+<div>
+    {{ avatar.file_path}} <br>
+    <img src="{{ avatar.file_path.url }}" alt="" width="150">
+</div>
+<hr>
+{% endfor %}
+
+{% endblock%}
