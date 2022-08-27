@@ -6,10 +6,10 @@ RUN_COMMAND = gunicorn-run
 run:
 	 $(MANAGE) runserver 0.0.0.0:8000
 
-new-migrate:
+mm:
 	$(MANAGE) makemigrations
 
-migrate:
+m:
 	$(MANAGE) migrate
 
 lint:
