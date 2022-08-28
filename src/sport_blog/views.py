@@ -7,7 +7,6 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, ListView
 from django_filters.views import FilterView
-from faker import Faker
 
 from .filrers import BookFilter, PostFilter
 from .forms import PostForm, SubscriberForm
@@ -73,13 +72,13 @@ def subscriber_add(request):
     error = ""
     subscribe_success = False
     email_to = request.POST.get('email_to')
-
+    
     if request.method == "POST":
         form = SubscriberForm(request.POST)
         try:
             if form.is_valid():
                 form.save()
-
+                
                 subscribe_success = True
             else:
                 error = form.errors
@@ -87,7 +86,7 @@ def subscriber_add(request):
             error = 'Already subscribed'
     else:
         form = SubscriberForm()
-
+    
     context = {
         'form': form,
         'err': error
@@ -128,21 +127,21 @@ def categories_all(request):
 def api_posts(request):
     every = Post.objects.all()
     data = list(every.values())
-
+    
     return JsonResponse(data, safe=False)
 
 
 def api_subscribe(request):
     sup = Subscriber.objects.all()
     data = list(sup.values())
-
+    
     return JsonResponse(data, safe=False)
 
 
 def api_authors(request):
     all_authors = Author.objects.all()
     data = list(all_authors.values())
-
+    
     return JsonResponse(data, safe=False)
 
 
@@ -157,7 +156,7 @@ class BooksListView(FilterView):
     queryset = Book.objects.all()
     filterset_class = BookFilter
     paginate_by = 10
-
+    
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['get_params'] = '&'.join(
@@ -168,7 +167,7 @@ class BooksListView(FilterView):
         context['cnt'] = context['object_list'].count()
         context['title'] = 'Все книги'
         return context
-
+    
     template_name = 'sport_blog/book_list.html'
 
 
@@ -176,7 +175,7 @@ class PostsListView(FilterView):
     queryset = Post.objects.all()
     filterset_class = PostFilter
     paginate_by = 2
-
+    
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['get_params'] = '&'.join(
@@ -187,7 +186,7 @@ class PostsListView(FilterView):
         context['cnt'] = context['object_list'].count()
         context['title'] = 'Все посты'
         return context
-
+    
     template_name = 'sport_blog/posts_filter.html'
 
 
@@ -206,7 +205,7 @@ def display_attr(obj, atrr: str):
     get_display = f'get_{atrr}_display'
     if hasattr(obj, get_display):
         return getattr(obj, get_display)()
-
+    
     return getattr(obj, atrr)
 
 
@@ -214,16 +213,16 @@ class PostXLSX(View):
     headers = ['title']
     filename = 'posts_all_list.xlsx'
 
-    def get(self, request, *args, **kwargs):
-        response = HttpResponse(
-            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-            headers={'Content-Disposition': f'attachment; filename="{self.filename}"'},
-        )
 
-        writer = csv.writer(response)
-
-        writer.writerow(self.headers)
-        for post in Post.objects.all().iterator():
-            writer.writerow([display_attr(post, header) for header in self.headers])
-
-        return response
+def get(self, request, *args, **kwargs):
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        headers={'Content-Disposition': f'attachment; filename="{self.filename}"'},
+    )
+    writer = csv.writer(response)
+    
+    writer.writerow(self.headers)
+    for post in Post.objects.all().iterator():
+        writer.writerow([display_attr(post, header) for header in self.headers])
+    
+    return response

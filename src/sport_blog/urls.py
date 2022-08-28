@@ -1,14 +1,13 @@
 from django.conf import settings
-from django.conf.urls import url
 from django.conf.urls.static import static
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.views.decorators import cache
 from django.views.generic import RedirectView, TemplateView
 
 from . import views
 
 urlpatterns = [
-    url(r'^favicon\.ico$', RedirectView.as_view(url='/sport_blog/static/assets/img/favicon/favicon.ico')),
+    re_path(r'^favicon\.ico$', RedirectView.as_view(url='/sport_blog/static/assets/img/favicon/favicon.ico')),
 
     path('', TemplateView.as_view(template_name='sport_blog/home_page.html'), name='home_page'),
     path('about/', TemplateView.as_view(template_name='sport_blog/about.html'), name='about'),
