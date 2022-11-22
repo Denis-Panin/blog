@@ -88,23 +88,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sport_blogdb',
-        'USER': 'sport',
-        'PASSWORD': '123',
-        'HOST': 'localhost',
-        'PORT': '5432',
+     'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'sport_blogdb',
+#        'USER': 'sport',
+#        'PASSWORD': '123',
+#        'HOST': 'localhost',
+#        'PORT': '5432',
+#    }
+#}
 
 CACHE = {
     'default': {
