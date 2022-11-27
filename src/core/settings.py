@@ -22,7 +22,7 @@ CELERY_BROKER_URL = '{0}://{1}:{2}@{3}:{4}//'.format(
     os.environ.get('MQ_DEFAULT_PORT', '5672'),
 )
 
-CELERY_TIMEZONE = 'Europe/Moscow'
+CELERY_TIMEZONE = 'Europe/Poland'
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_filters',
     'crispy_forms',
+
 ]
 
 AUTH_USER_MODEL = 'account.user'

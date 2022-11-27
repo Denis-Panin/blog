@@ -13,6 +13,7 @@ from .forms import PostForm, SubscriberForm
 
 from .models import Author, Book, Category, ContactUs, Post, Subscriber
 from .services.post_services import post_find
+from faker import Faker
 
 
 def post_create(request):
