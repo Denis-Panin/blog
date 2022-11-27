@@ -1,13 +1,16 @@
 import os
+from dotenv import load_dotenv
 from pathlib import Path
 
 from celery.schedules import crontab
 
+load_dotenv()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-@gb1+ahs0@lp30(--&c9+ac@7k0+hi*i&!az-m=j44%h$ohcs2'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['django', '127.0.0.1', '0.0.0.0', 'localhost']
 
