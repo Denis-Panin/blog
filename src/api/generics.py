@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from sport_blog.models import Author, Post
+from blog.models import Author, Post
 
 
 class PostSerializer(serializers.ModelSerializer):

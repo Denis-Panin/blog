@@ -25,7 +25,7 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 
 CELERY_BEAT_SCHEDULE = {
     'subscribe_notify_beat': {
-        'task': 'sport_blog.tasks.subscribe_notify_beat',
+        'task': 'blog.tasks.subscribe_notify_beat',
         'schedule': crontab(hour='09')
     },
 }
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'debug_toolbar',
-    'sport_blog',
+    'blog',
     'account',
     'rest_framework',
     'drf_yasg',
@@ -65,7 +65,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 
-    'sport_blog.middlewares.SimpleMiddleware',
+    'blog.middlewares.SimpleMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -98,7 +98,7 @@ DATABASES = {
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'sport_blogdb',
+#        'NAME': 'blogdb',
 #        'USER': 'sport',
 #        'PASSWORD': '123',
 #        'HOST': 'localhost',
@@ -155,7 +155,7 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-DEFAULT_FROM_EMAIL = "from-admin@sport_blog.com"
+DEFAULT_FROM_EMAIL = "from-admin@blog.com"
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DOMAIN = 'http://127.0.0.1:8000'

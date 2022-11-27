@@ -1,6 +1,6 @@
 from account.models import User
 import pytest
-from sport_blog.models import Category, ContactUs, Post
+from blog.models import Category, ContactUs, Post
 
 
 @pytest.fixture(autouse=True, scope="function")

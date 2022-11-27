@@ -2,7 +2,7 @@ from api.generics import AuthorSerializer, PostSerializer
 from rest_framework import generics, viewsets
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
-from sport_blog.models import Author, Post
+from blog.models import Author, Post
 
 
 class PostAPIViewSet(viewsets.ModelViewSet):

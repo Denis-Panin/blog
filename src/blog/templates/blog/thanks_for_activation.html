@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}
+{{ title }}
+{% endblock%}
+{% block content%}
+
+<div class="content">
+
+    <div class="payload">
+        <h1><em class="index_text">"Ваш профиль успешно активирован!Спасибо!)"</em></h1>
+    </div>
+    <div>
+        <img src="{% static 'assets/img/sport-1.svg' %}" width="900" height="600" alt="Sport">
+    </div>
+</div>
+
+{% endblock%}

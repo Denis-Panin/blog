@@ -3,7 +3,7 @@ PROJECT_DIR=$(shell pwd)
 WSGI_PORT=8000
 RUN_COMMAND = gunicorn-run
 
-run:
+start:
 	 $(MANAGE) runserver 0.0.0.0:8000
 
 mm:
@@ -11,6 +11,9 @@ mm:
 
 m:
 	$(MANAGE) migrate
+
+user:
+	$(MANAGE) createsuperuser
 
 lint:
 	flake8 ./src
@@ -49,7 +52,7 @@ pytest:
 	cd src && pytest
 
 test-all-project:
-	cd src && pytest --cov=sport_blog --cov-report=html --cov-fail-under=59
+	cd src && pytest --cov=blog --cov-report=html --cov-fail-under=59
 
 # DOCKER COMMANDS
 
@@ -82,6 +85,6 @@ docker-up:
 	docker-compose up
 
 copy-static:
-	docker exec -it sport_blog-backend python ./src/manage.py collectstatic --noinput
-	docker cp sport_blog-backend:/srv/project/static_content/static /tmp/static
+	docker exec -it blog-backend python ./src/manage.py collectstatic --noinput
+	docker cp blog-backend:/srv/project/static_content/static /tmp/static
 	docker cp /tmp/static nginx:/etc/nginx
