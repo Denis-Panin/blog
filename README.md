@@ -2,9 +2,6 @@
 <h3 align="center">Backend developer from Ukrain</h3>
 <h3 align="center"> The name is project "blog" </h3>
 
-![blog](https://user-images.githubusercontent.com/80538140/126048532-ebb6b746-7672-47b6-83bf-18462cc385fa.png)
-![blog2](https://user-images.githubusercontent.com/80538140/126048536-fdb23fef-50e1-4b41-a8b0-ada47e3764af.png)
-
 <p>This is an educational project that I did on the "Python advanced" course from the IT school "Hillel",
 course teacher Roman Romadin -> (https://online.ithillel.ua/ua/coaches/roman-romadin).</p>
 
