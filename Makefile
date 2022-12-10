@@ -4,7 +4,7 @@ WSGI_PORT=8000
 RUN_COMMAND = gunicorn-run
 
 start:
-	 $(MANAGE) runserver 0.0.0.0:8000
+	$(MANAGE) runserver 0.0.0.0:8000
 
 mm:
 	$(MANAGE) makemigrations
@@ -28,10 +28,10 @@ shell_plus:
 	$(MANAGE) shell_plus --print-sql
 
 celery:
-	 cd src && celery -A core worker -l info
+	cd src && celery -A core worker -l info
 
 beat_celery:
-	 cd src && celery -A core beat -l info
+	cd src && celery -A core beat -l info
 
 flower_celery:
 	cd src &&  celery -A core flower
@@ -57,7 +57,7 @@ test-all-project:
 # DOCKER COMMANDS
 
 doc-clear:
-	 docker system prune -a
+	docker system prune -a
 
 container:
 	docker container ls -a

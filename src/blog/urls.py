@@ -12,8 +12,9 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='blog/home_page.html'), name='home_page'),
     path('about/', TemplateView.as_view(template_name='blog/about.html'), name='about'),
     path('end/registration/',
-         TemplateView.as_view(template_name='blog/thanks_for_activation.html'),
-         name='end_registration'),
+        TemplateView.as_view(template_name='blog/thanks_for_activation.html'),
+        name='end_registration'
+        ),
 
     path('posts/list/', views.PostsListView.as_view(), name='posts_list'),
     path('posts/list/csv/', views.PostXLSX.as_view(), name='posts_list_csv'),
