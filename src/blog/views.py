@@ -8,11 +8,11 @@ from django.views import View
 from django.views.generic import CreateView, ListView
 from django_filters.views import FilterView
 
-from filrers import BookFilter, PostFilter
-from forms import PostForm, SubscriberForm
+from .filrers import BookFilter, PostFilter
+from .forms import PostForm, SubscriberForm
 
-from models import Author, Book, Category, ContactUs, Post, Subscriber
-from services.post_services import post_find
+from .models import Author, Book, Category, ContactUs, Post, Subscriber
+from .services.post_services import post_find
 from faker import Faker
 
 
