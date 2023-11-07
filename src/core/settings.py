@@ -12,26 +12,27 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = ['django', '127.0.0.1', '0.0.0.0', 'localhost']
+# ALLOWED_HOSTS = ['django', '127.0.0.1', '0.0.0.0', 'localhost']
+ALLOWED_HOSTS = ['*']
 
-CELERY_BROKER_URL = '{0}://{1}:{2}@{3}:{4}//'.format(
-    os.environ.get('MQ_DEFAULT_PROTOCOL', 'amqp'),
-    os.environ.get('MQ_DEFAULT_USER', 'guest'),
-    os.environ.get('MQ_DEFAULT_PASS', 'guest'),
-    os.environ.get('MQ_DEFAULT_HOST', '127.0.0.1'),
-    os.environ.get('MQ_DEFAULT_PORT', '5672'),
-)
-
-CELERY_TIMEZONE = 'Europe/Poland'
-CELERY_TASK_TRACK_STARTED = True
-CELERY_TASK_TIME_LIMIT = 30 * 60
-
-CELERY_BEAT_SCHEDULE = {
-    'subscribe_notify_beat': {
-        'task': 'blog.tasks.subscribe_notify_beat',
-        'schedule': crontab(hour='09')
-    },
-}
+# CELERY_BROKER_URL = '{0}://{1}:{2}@{3}:{4}//'.format(
+#     os.environ.get('MQ_DEFAULT_PROTOCOL', 'amqp'),
+#     os.environ.get('MQ_DEFAULT_USER', 'guest'),
+#     os.environ.get('MQ_DEFAULT_PASS', 'guest'),
+#     os.environ.get('MQ_DEFAULT_HOST', '127.0.0.1'),
+#     os.environ.get('MQ_DEFAULT_PORT', '5672'),
+# )
+#
+# CELERY_TIMEZONE = 'Europe/Poland'
+# CELERY_TASK_TRACK_STARTED = True
+# CELERY_TASK_TIME_LIMIT = 30 * 60
+#
+# CELERY_BEAT_SCHEDULE = {
+#     'subscribe_notify_beat': {
+#         'task': 'blog.tasks.subscribe_notify_beat',
+#         'schedule': crontab(hour='09')
+#     },
+# }
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -94,28 +95,21 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.getenv('ENGINE'),
+        'NAME': os.getenv('NAME'),
+        'USER': os.getenv('USER'),
+        'PASSWORD': os.getenv('PASS'),
+        'HOST': os.getenv('HOST'),
+        'PORT': os.getenv('5432'),
     }
 }
 
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'blogdb',
-#        'USER': 'sport',
-#        'PASSWORD': '123',
-#        'HOST': 'localhost',
-#        'PORT': '5432',
-#    }
+# CACHE = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#         'LOCATION': 'memcached:11211',
+#     }
 # }
-
-CACHE = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': 'memcached:11211',
-    }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -144,9 +138,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR / "static")
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR / "static")
+# ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static_content', 'static')
 
@@ -159,7 +153,7 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-DEFAULT_FROM_EMAIL = "from-admin@blog.com"
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DOMAIN = 'http://127.0.0.1:8000'
+# DEFAULT_FROM_EMAIL = "from-admin@blog.com"
+# if DEBUG:
+#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#     DOMAIN = 'http://127.0.0.1:8000'

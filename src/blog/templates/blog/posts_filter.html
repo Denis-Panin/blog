@@ -6,15 +6,16 @@
 {% block content%}
 
 
+
 <div class="content">
-    <h2>Колличество постов: {{ cnt }}</h2>
+<!--    <h2>Колличество постов: {{ cnt }}</h2>-->
     <h1>Посты</h1>
     <hr>
     <form method="GET">
         {{ filter.form | crispy}}
         <br>
         <button type="submit" class="btn btn-primary">
-            <span class="glyphicon glyphicon-search">Поиск</span>
+            <span>Поиск</span>
         </button>
     </form>
 
@@ -31,13 +32,13 @@
 </div>
 
 
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="?page=1{{ get_params }}">1</a></li>
-        <li class="page-item"><a class="page-link" href="?page=2{{ get_params }}">2</a></li>
-        <li class="page-item"><a class="page-link" href="?page=3{{ get_params }}">3</a></li>
-        <li class="page-item"><a class="page-link" href="?page=4{{ get_params }}">4</a></li>
-    </ul>
-</nav>
+<!--<nav aria-label="Page navigation example">-->
+<!--    <ul class="pagination">-->
+<!--        <li class="page-item"><a class="page-link" href="?page=1{{ get_params }}">1</a></li>-->
+<!--        <li class="page-item"><a class="page-link" href="?page=2{{ get_params }}">2</a></li>-->
+<!--        <li class="page-item"><a class="page-link" href="?page=3{{ get_params }}">3</a></li>-->
+<!--        <li class="page-item"><a class="page-link" href="?page=4{{ get_params }}">4</a></li>-->
+<!--    </ul>-->
+<!--</nav>-->
 
 {% endblock%}

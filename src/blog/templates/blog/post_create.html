@@ -3,23 +3,28 @@
 {{ title }}
 {% endblock %}
 {% block content%}
-
 <div class="form">
-
     <h1>Создать пост</h1>
     <br>
     <div>
         <form method="POST">
             {% csrf_token %}
-
-            {{ form.title }}
-            {{ form.description }}
-            {{ form.content }}
-
-            <br>
+            <div class="form_create">
+                <div class="fieldWrapper">
+                    <label>Title subject:</label>
+                    {{ form.title }}
+                </div>
+                <div class="fieldWrapper">
+                    <label>Description subject:</label>
+                    {{ form.description }}
+                </div>
+                <div class="fieldWrapper">
+                    <label>Content subject:</label>
+                    {{ form.content }}
+                </div>
+            </div>
             <button class="btn btn-lg btn-success">Сохранить</button>
         </form>
     </div>
 </div>
-
 {% endblock%}

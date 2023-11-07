@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import ModelForm, Textarea, TextInput
+from django.utils.translation import gettext_lazy as _
 
 from .models import Author, Post, Subscriber
 
@@ -21,6 +22,11 @@ class PostForm(ModelForm):
                 "class": "form-control",
                 "placeholder": "Содержимое",
             })
+        }
+        error_messages = {
+            "title": {
+                "max_length": _("This writer's name is too long."),
+            },
         }
 
 

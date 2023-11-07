@@ -33,9 +33,6 @@ class Post(models.Model):
     class Meta:
         verbose_name = "Пост"
         verbose_name_plural = "Посты"
-        permissions = [
-            ('post_edit_all', 'edit all fields')
-        ]
 
     title = models.CharField('Заголовок', max_length=150)
     description = models.CharField('Краткое описание', max_length=250)

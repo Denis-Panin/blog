@@ -15,17 +15,32 @@ m:
 user:
 	$(MANAGE) createsuperuser
 
+gp:
+	$(MANAGE) gen_posts
+
+dp:
+	$(MANAGE) del_posts
+
+ga:
+	$(MANAGE) gen_authors
+
+da:
+	$(MANAGE) del_authors
+
+gb:
+	$(MANAGE) gen_books
+
 lint:
 	flake8 ./src
 
 check:
 	$(MANAGE) check
 
-check-migrate:
+cm:
 	$(MANAGE) --check --dry-run
 
-shell_plus:
-	$(MANAGE) shell_plus --print-sql
+shell:
+	$(MANAGE) shell_plus
 
 celery:
 	cd src && celery -A core worker -l info
