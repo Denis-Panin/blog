@@ -1,30 +1,24 @@
 {% extends 'blog/base.html' %}
-
 {% block title %}
 {{ title }}
 {% endblock %}
 {% block content%}
-
-
 <div class="content">
-
     <h1>Подписаться на Автора</h1>
-
     <div class="payload">
         <div class="err">
             {{ form.errors }}
         </div>
         <form method="POST">
             {% csrf_token %}
-
+            {{ form.name }}
+            <br>
             {{ form.email_to }}
             <br>
             {{ form.author_id }}
-
             <br>
             <button class="btn btn-lg btn-danger">Подписаться</button>
         </form>
     </div>
 </div>
-
 {% endblock%}

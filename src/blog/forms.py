@@ -41,8 +41,12 @@ class SubscriberForm(ModelForm):
 
     class Meta:
         model = Subscriber
-        fields = ["email_to", "author_id"]
+        fields = ["name", "email_to", "author_id"]
         widgets = {
+            "name": TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Name подписчика"
+            }),
             "email_to": TextInput(attrs={
                 "class": "form-control",
                 "placeholder": "Email подписчика",

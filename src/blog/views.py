@@ -63,17 +63,14 @@ def subscriber_add(request):
             if form.is_valid():
                 form.save()
                 subscribe_success = True
+                return redirect('subscribers')
             else:
                 error = form.errors
         except ValidationError:
             error = 'Already subscribed'
     else:
         form = SubscriberForm()
-    context = {
-        'form': form,
-        'err': error
-    }
-    return render(request, 'blog/subscribe_add.html', context=context)
+    return render(request, 'blog/subscribe_add.html', {'form': form})
 
 
 def authors_all(request):
@@ -99,18 +96,18 @@ def categories_all(request):
 class BooksListView(FilterView):
     queryset = Book.objects.all()
     filterset_class = BookFilter
-    paginate_by = 10
+    #paginate_by = 10
 
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        context['get_params'] = '&'.join(
-            f'{key}={val}'
-            for key, val in self.request.GET.items()
-            if key != 'page'
-        )
-        context['cnt'] = context['object_list'].count()
-        context['title'] = 'Все книги'
-        return context
+    # def get_context_data(self, *args, **kwargs):
+#         context = super().get_context_data(*args, **kwargs)
+#         context['get_params'] = '&'.join(
+#             f'{key}={val}'
+#             for key, val in self.request.GET.items()
+#             if key != 'page'
+#         )
+#         context['cnt'] = context['object_list'].count()
+#         context['title'] = 'Все книги'
+#         return context
 
     template_name = 'blog/book_list.html'
 
