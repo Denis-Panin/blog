@@ -30,6 +30,9 @@ da:
 gb:
 	$(MANAGE) gen_books
 
+dbo:
+	$(MANAGE) del_books
+
 lint:
 	flake8 ./src
 

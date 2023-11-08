@@ -79,35 +79,30 @@ def authors_all(request):
 
 
 def author_delete(request, author_id):
-    author = Author.objects.get(id=author_id)
-    author.delete()
+    get_object_or_404(Author, id=author_id).delete()
     return render(request, 'blog/home_page.html')
 
 
 def categories_all(request):
     categories = Category.objects.all().only('name')
-    context = {
-        "title": "Categories",
-        "categories": categories
-    }
-    return render(request, 'blog/categories.html', context)
+    return render(request, 'blog/categories.html', {"title": "Categories", "categories": categories})
 
 
 class BooksListView(FilterView):
     queryset = Book.objects.all()
     filterset_class = BookFilter
-    #paginate_by = 10
+    # paginate_by = 10
 
     # def get_context_data(self, *args, **kwargs):
-#         context = super().get_context_data(*args, **kwargs)
-#         context['get_params'] = '&'.join(
-#             f'{key}={val}'
-#             for key, val in self.request.GET.items()
-#             if key != 'page'
-#         )
-#         context['cnt'] = context['object_list'].count()
-#         context['title'] = 'Все книги'
-#         return context
+    #         context = super().get_context_data(*args, **kwargs)
+    #         context['get_params'] = '&'.join(
+    #             f'{key}={val}'
+    #             for key, val in self.request.GET.items()
+    #             if key != 'page'
+    #         )
+    #         context['cnt'] = context['object_list'].count()
+    #         context['title'] = 'Все книги'
+    #         return context
 
     template_name = 'blog/book_list.html'
 

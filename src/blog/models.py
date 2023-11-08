@@ -19,6 +19,7 @@ class Subscriber(models.Model):
     class Meta:
         verbose_name = "Подписчик"
         verbose_name_plural = "Подписчики"
+
     name = models.CharField('Имя автора', max_length=100, null=True)
     email_to = models.EmailField("Email подписчика")
     author_id = models.ForeignKey("Author", on_delete=models.CASCADE)
