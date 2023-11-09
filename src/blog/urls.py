@@ -5,10 +5,16 @@ from django.views.decorators import cache
 from django.views.generic import RedirectView, TemplateView
 
 from . import views
+from .views import PostDetailView, PostListView
 
 urlpatterns = [
     # path('myview/', views.my_view, name='my_view'),
-
+    
+    path("post/<int:pk>", PostDetailView.as_view(), name="post-detail"),
+    path("posty/", PostListView.as_view(), name="article-list"),
+    
+    
+    
     path('', TemplateView.as_view(template_name='blog/home_page.html'), name='home_page'),  # TODO rework
     path('about/', TemplateView.as_view(template_name='blog/about.html'), name='about'),  # TODO rework
 

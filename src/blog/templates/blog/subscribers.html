@@ -16,12 +16,12 @@
             </tr>
             </thead>
             <tbody>
-            {% for SUB in subs %}
+            {% for subscriber in subscribers %}
             <tr>
-                <td scope="row">{{ SUB.id }}</td>
-                <td>{{ SUB.name }}</td>
-                <td>[{{ SUB.email_to }}]</td>
-                <td>{{ SUB.author_id }}</td>
+                <td>{{ subscriber.id }}</td>
+                <td>{{ subscriber.name }}</td>
+                <td>[{{ subscriber.email_to }}]</td>
+                <td>{{ subscriber.author_id }}</td>
             </tr>
             {% endfor %}
             </tbody>

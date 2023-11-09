@@ -1,11 +1,12 @@
 import csv
 
+from django.utils import timezone
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView
 from django_filters.views import FilterView
 from django.http import Http404
 from django.contrib import messages
@@ -51,7 +52,7 @@ def post_update(request, post_id):
 
 def get_subscribers(request):
     subscribers = Subscriber.objects.all()
-    return render(request, 'blog/subscribers.html', {"title": "Subscribers", "subs": subscribers})
+    return render(request, 'blog/subscribers.html', {"title": "Subscribers", "subscribers": subscribers})
 
 
 def subscriber_add(request):
@@ -106,6 +107,24 @@ class BooksListView(FilterView):
 
     template_name = 'blog/book_list.html'
 
+class PostDetailView(DetailView):
+     model = Post
+     def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["now"] = timezone.now()
+        print("==============")
+        print(context)
+        print("==============")
+        return context 
+
+class PostListView(ListView):
+    model = Post
+    paginate_by = 100  # if pagination is desired
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["now"] = timezone.now()
+        return context
 
 class PostsListView(FilterView):
     queryset = Post.objects.all()
