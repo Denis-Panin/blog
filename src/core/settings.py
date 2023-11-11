@@ -49,8 +49,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'django_filters',
-    'crispy_forms',
-
+    'widget_tweaks',
 ]
 
 AUTH_USER_MODEL = 'account.user'
@@ -93,23 +92,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": "mydatabase",
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "mydatabase",
+    'default': {
+        'ENGINE': os.getenv('ENGINE'),
+        'NAME': os.getenv('NAME'),
+        'USER': os.getenv('USER'),
+        'PASSWORD': os.getenv('PASS'),
+        'HOST': os.getenv('HOST'),
+        'PORT': os.getenv('5432'),
     }
 }
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': os.getenv('ENGINE'),
-#        'NAME': os.getenv('NAME'),
-#        'USER': os.getenv('USER'),
-#        'PASSWORD': os.getenv('PASS'),
-#        'HOST': os.getenv('HOST'),
-#        'PORT': os.getenv('5432'),
-#    }
-#}
 
 # CACHE = {
 #     'default': {

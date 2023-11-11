@@ -10,7 +10,7 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th scope="col">ID автора</th>
+<!--                <th scope="col">ID автора</th>-->
                 <th scope="col">Автор</th>
                 <th scope="col">Email автора</th>
                 <th scope="col">Количество книг</th>
@@ -22,12 +22,12 @@
             <tbody>
             {% for author in authors %}
             <tr>
-                <td scope="row">{{ author.id }}</td>
-                <td>{{ author.name }}</td>
+<!--                <td scope="row">{{ author.id }}</td>-->
+                <td>{{ author.first_name }} {{ author.last_name}}</td>
                 <td>[{{ author.email }}]</td>
                 <td>{{ author.books.count }}</td>
                 {% if request.user.is_authenticated %}
-                <td><a href="{% url 'author_delete' author.id %}" class="btn btn-danger">Удалить автора</a></td>
+                <td><a href="{% url 'author_delete' author.slug %}" class="btn btn-danger">Удалить автора</a></td>
                 {% endif %}
             </tr>
             {% endfor %}

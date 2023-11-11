@@ -1,15 +1,15 @@
 import django_filters
 
-from blog.models import Book, Post
+from blog.models import Article, Book
 
 
-class PostFilter(django_filters.FilterSet):
+class ArticleFilter(django_filters.FilterSet):
     class Meta:
-        model = Post
+        model = Article
         fields = ['title', 'description']
 
 
 class BookFilter(django_filters.FilterSet):
     class Meta:
         model = Book
-        fields = ['title', 'author']
+        fields = ['title', 'author', 'category']

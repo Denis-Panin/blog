@@ -8,18 +8,18 @@
     <h1>{{ title}}</h1>
     <br>
     <div class="payload">
-        <span class="grey summary">{{ post.description }}</span>
-        <div class="post_content">
-            {{ post.content }}
+        <span class="grey summary">{{ article.description }}</span>
+        <div class="article_content">
+            {{ article.content }}
         </div>
         <br>
         <div class="update link">
-            <a href="{% url 'post_update' post_id=post.id %}" class="btn btn-info">Редактировать</a>
+            <a href="{% url 'article_update' slug=article.slug %}" class="btn btn-info">Редактировать</a>
         </div>
         <br>
         <div class="update link">
             {% if request.user.is_authenticated %}
-            <a href="{% url 'post_delete' post.id %}" class="btn btn-danger">Удалить статью</a>
+            <a href="{% url 'article_delete' article.slug %}" class="btn btn-danger">Удалить статью</a>
             {% endif %}
         </div>
     </div>

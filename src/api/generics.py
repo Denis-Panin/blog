@@ -1,11 +1,11 @@
 from rest_framework import serializers
 
-from blog.models import Author, Post
+from blog.models import Article, Author
 
 
-class PostSerializer(serializers.ModelSerializer):
+class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Post
+        model = Article
         fields = (
             'title',
             'description',

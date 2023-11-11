@@ -1,46 +1,62 @@
 from django.db import models
 from django.utils.timezone import now
+from django.utils.text import slugify
 
+
+# TODO from django.utils.translation import gettext_lazy as _
 
 class Author(models.Model):
     class Meta:
         verbose_name = "Автор"
-        verbose_name_plural = "Авторы"
+        verbose_name_plural = "Автори"
 
-    name = models.CharField('Имя автора', max_length=100, null=True)
+    first_name = models.CharField('Імʼя автора', max_length=100, null=True)
+    last_name = models.CharField('Призвище автора', max_length=100, null=True)
     email = models.EmailField('Email автора', max_length=50, null=True)
     age = models.IntegerField(default=0)
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f'{self.first_name} {self.last_name}')
+        super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return f'{self.first_name} {self.last_name}'
 
 
 class Subscriber(models.Model):
     class Meta:
-        verbose_name = "Подписчик"
-        verbose_name_plural = "Подписчики"
+        verbose_name = "Підписник"
+        verbose_name_plural = "Підписники"
 
-    name = models.CharField('Имя автора', max_length=100, null=True)
-    email_to = models.EmailField("Email подписчика")
+    name = models.CharField('Імʼя автора', max_length=100, null=True)
+    email_to = models.EmailField("Email підписника")
     author_id = models.ForeignKey("Author", on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(default=now)
 
     def __str__(self):
-        return f'{self.name} - {self.email_to}'
+        return self.email_to
 
 
-class Post(models.Model):
+class Article(models.Model):
     class Meta:
-        verbose_name = "Пост"
-        verbose_name_plural = "Посты"
+        verbose_name = "Стаття"
+        verbose_name_plural = "Статті"
 
     title = models.CharField('Заголовок', max_length=150)
-    description = models.CharField('Краткое описание', max_length=250)
-    content = models.TextField('Статья')
+    description = models.CharField('Короткий опис', max_length=250)
+    content = models.TextField('Текст')
+    slug = models.SlugField(unique=True, blank=True)
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(default=now)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -48,10 +64,10 @@ class Post(models.Model):
 
 class Category(models.Model):
     class Meta:
-        verbose_name = "Категория"
-        verbose_name_plural = "Категории"
+        verbose_name = "Категорія"
+        verbose_name_plural = "Категорії"
 
-    name = models.CharField('Название категории', max_length=250)
+    name = models.CharField('Назва категорії', max_length=250)
 
     def __str__(self):
         return self.name
@@ -62,7 +78,7 @@ class Book(models.Model):
         verbose_name = "Книга"
         verbose_name_plural = "Книги"
 
-    title = models.CharField('Название книги', max_length=250)
+    title = models.CharField('Назва книги', max_length=250)
     author = models.ForeignKey(Author, models.CASCADE, related_name='books')
     category = models.ForeignKey(Category, models.CASCADE, related_name='books', null=True, blank=True)
 

@@ -1,23 +1,23 @@
-from api.generics import AuthorSerializer, PostSerializer
+from api.generics import AuthorSerializer, ArticleSerializer
 from rest_framework import generics, viewsets
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
-from blog.models import Author, Post
+from blog.models import Article, Author
 
 
-class PostAPIViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all().order_by('-id')
-    serializer_class = PostSerializer
+class ArticleAPIViewSet(viewsets.ModelViewSet):
+    queryset = Article.objects.all().order_by('-id')
+    serializer_class = ArticleSerializer
     pagination_class = PageNumberPagination
     pagination_class.page_size = 4
 
 
-class PostAPIViewSet2(generics.GenericAPIView):
-    queryset = Post.objects.all().order_by('-id')
+class ArticleAPIViewSet2(generics.GenericAPIView):
+    queryset = Article.objects.all().order_by('-id')
 
     def get(self, request):
-        res = Post.objects.all().order_by('-id')
-        ser = PostSerializer(res, many=True)
+        res = Article.objects.all().order_by('-id')
+        ser = ArticleSerializer(res, many=True)
         return Response(ser.data)
 
 

@@ -4,22 +4,23 @@
 {% endblock %}
 {% block content%}
 <div class="content">
-<!--    <h2>Колличество постов: {{ cnt }}</h2>-->
-    <h1>Посты</h1>
+    <h2>Колличество articles: {{ cnt }}</h2>
+    <h1>Articles</h1>
     <hr>
     <form method="GET">
+        {{ filter.form }}
         <br>
         <button type="submit" class="btn btn-primary">
             <span>Поиск</span>
         </button>
     </form>
-    {% for post in post_list %}
+    {% for article in article_list %}
     <div class="post">
         <br>
         <h4>
-            {{ forloop.counter }}) <a href="{% url 'post_show' post_id=post.id %}">{{ post.title }}</a>
+            {{ forloop.counter }}) <a href="{% url 'article_show' slug=article.slug %}">{{ article.title }}</a>
         </h4>
-        <p>{{ post.content }}</p>
+        <p>{{ article.content }}</p>
     </div>
     <hr>
     {% endfor %}

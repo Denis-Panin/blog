@@ -12,3 +12,8 @@ h1 {
 .fieldWrapper {
     color: green;
 }
+
+.search_form {
+    color: #336699; /* Змініть колір на свій смак */
+    font-size: 16px; /* Змініть розмір шрифту на свій смак */
+}

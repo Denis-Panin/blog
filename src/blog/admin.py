@@ -1,10 +1,10 @@
 from account.models import Avatar, User
 from django.contrib import admin
 
-from .models import Author, Book, Category, ContactUs, Post, Subscriber
+from .models import Author, Book, Category, ContactUs, Article, Subscriber
 
 
-class PostAdmin(admin.ModelAdmin):
+class ArticleAdmin(admin.ModelAdmin):
     list_display = [
         'title',
         'description',
@@ -36,7 +36,7 @@ class BookAdmin(admin.ModelAdmin):
     ]
 
 
-admin.site.register(Post, PostAdmin)
+admin.site.register(Article, ArticleAdmin)
 admin.site.register(Author)
 admin.site.register(Book, BookAdmin)
 admin.site.register(Category)

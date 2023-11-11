@@ -15,11 +15,11 @@ m:
 user:
 	$(MANAGE) createsuperuser
 
-gp:
-	$(MANAGE) gen_posts
+gart:
+	$(MANAGE) gen_articles
 
-dp:
-	$(MANAGE) del_posts
+dart:
+	$(MANAGE) del_articles
 
 ga:
 	$(MANAGE) gen_authors
