@@ -40,6 +40,7 @@ class Subscriber(models.Model):
         return self.email_to
 
 
+# TODO: likes for Article
 class Article(models.Model):
     class Meta:
         verbose_name = "Стаття"
@@ -87,9 +88,14 @@ class Book(models.Model):
 
 
 class ContactUs(models.Model):
+    class Meta:
+        verbose_name = "Звернення"
+        verbose_name_plural = "Звернення"
+
+    name = models.CharField(max_length=100, null=True)
     email = models.EmailField()
     subject = models.CharField(max_length=120)
     message = models.TextField()
 
     def __str__(self):
-        return self.email
+        return f'{self.email} - {self.subject}'

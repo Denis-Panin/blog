@@ -4,9 +4,10 @@
 {% endblock %}
 {% block content%}
 <div class="text-center">
-    <form action="{% url 'contact-us-create' %}" method="POST">
+    <br>
+    <form action="{% url 'blog:contact_us' %}" method="POST">
     {% csrf_token %}
-    {{ form }}
+    {{ form.as_p }}
         <br>
     <button class="btn btn-lg btn-success">Сохранить</button>
 </form>

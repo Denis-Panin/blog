@@ -6,6 +6,7 @@ from django.views.generic import RedirectView, TemplateView
 
 from . import views
 
+app_name = 'blog'
 urlpatterns = [
     # path('myview/', views.my_view, name='my_view'),
     path('', TemplateView.as_view(template_name='blog/home_page.html'), name='home_page'),  # TODO rework
@@ -27,7 +28,7 @@ urlpatterns = [
     path('author/delete/<slug:slug>/', views.delete_author, name='author_delete'),
     path('book/list/', views.BooksListView.as_view(), name='book_list'),
     path('categories/all/', views.get_categories, name='categories_all'),
-    path('contact/us/create/', views.ContactUsView.as_view(), name='contact-us-create'),
-    path('contact/us/list/', views.ContactUsListView.as_view(), name='contact-us-list'),
+    path('contact/', views.ContactUsView.as_view(), name='contact_us'),
+    # path('contact/us/list/', views.ContactUsListView.as_view(), name='contact-us-list'),
     path('api/v1/', include('api.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

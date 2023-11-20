@@ -1,0 +1,92 @@
+<header class="p-3 text-bg-dark">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{% url 'home_page' %}" class="nav-link px-2 text-secondary">Home Page</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-labelledby="dropdownMenuLink">
+                        Articles
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'article_list' %}">All articles</a></li>
+                        <li><a class="dropdown-item" href="{% url 'article_create' %}">Create article</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <!--                        <li><a class="dropdown-item" href="#">Download CSV</a></li>-->
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Authors/Subscribers
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'subscribers' %}">Все подписчики</a></li>
+                        <li><a class="dropdown-item" href="{% url 'authors_all' %}">Все авторы</a></li>
+                        <li><a class="dropdown-item" href="{% url 'subscriber_add' %}">Подписаться на Автора</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        About US
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'about' %}">About US</a></li>
+                        <li><a class="dropdown-item" href="{% url 'contact_us' %}">Contact Us</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'book_list' %}" class="nav-link px-2 text-white">Books</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Personal cabinet
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'account:sign_up' %}">Sign_up</a></li>
+                        <li><a class="dropdown-item" href="{% url 'account:login' %}">Sign-in</a></li>
+                        {% if request.user.is_authenticated %}
+                        <li><a class="dropdown-item" href="{% url 'account:log_out' %}"> Logout</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</header>
+<!--<nav>-->
+<!--    <div class="main_menu">-->
+<!--        <div class="container_menu">-->
+<!--            <ul class="cont_menu_li">-->
+<!--                <li>Features</li>-->
+<!--                <li>Pricing</li>-->
+<!--                <li>Resources</li>-->
+<!--                <li>Company</li>-->
+<!--                <li>App Center</li>-->
+<!--                <li>Extra tools</li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <div>English</div>-->
+<!--            <div>^^</div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="blog_navbar">-->
+<!--        <p>here is navbar items</p>-->
+<!--    </div>-->
+<!--    <hr>-->
+<!--</nav>-->
+

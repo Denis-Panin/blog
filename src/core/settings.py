@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
 ]
 
-AUTH_USER_MODEL = 'account.user'
+# AUTH_USER_MODEL = 'account.user'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',

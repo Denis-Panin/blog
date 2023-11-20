@@ -1,4 +1,4 @@
-from account.models import Avatar, User
+# from account.models import Avatar, User
 from django.contrib import admin
 
 from .models import Author, Book, Category, ContactUs, Article, Subscriber
@@ -42,5 +42,5 @@ admin.site.register(Book, BookAdmin)
 admin.site.register(Category)
 admin.site.register(Subscriber)
 admin.site.register(ContactUs)
-admin.site.register(User)
-admin.site.register(Avatar)
+# admin.site.register(User)
+# admin.site.register(Avatar)

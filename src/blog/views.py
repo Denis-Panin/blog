@@ -16,12 +16,17 @@ from .forms import ArticleForm, SubscriberForm
 from .models import Author, Book, Category, ContactUs, Article, Subscriber
 
 
+# def get_top_article(request):
+#     top_article = Article.objects.get()
+#     return render(request, 'blog/article_show.html', {"title": article.title, "article": article})
+#     pass
+
 def create_article(request):
     if request.method == "POST":
         form = ArticleForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('article_list')
+            return redirect('blog:article_list')
     else:
         form = ArticleForm()
     return render(request, 'blog/article_create.html', {'form': form})
@@ -38,7 +43,7 @@ def update_article(request, slug):
         form = ArticleForm(instance=article, data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('article_list')
+            return redirect('blog:article_list')
     else:
         form = ArticleForm(instance=article)
     return render(request, 'blog/article_update.html', {'form': form})
@@ -46,7 +51,7 @@ def update_article(request, slug):
 
 def delete_article(request, slug):
     get_object_or_404(Article, slug=slug).delete()
-    return redirect('article_list')
+    return redirect('blog:article_list')
 
 
 class ArticleListView(FilterView):
@@ -123,15 +128,15 @@ class BooksListView(FilterView):
     template_name = 'blog/book_list.html'
 
 
-class ContactUsListView(ListView):
-    queryset = ContactUs.objects.all()
-    template_name = 'blog/contact-us-list.html'
+# class ContactUsListView(ListView):
+#     queryset = ContactUs.objects.all()
+#     template_name = 'blog/contact-us-list.html'
 
 
 class ContactUsView(CreateView):
-    success_url = reverse_lazy('contact-us-list')
+    success_url = reverse_lazy('home_page')
     model = ContactUs
-    fields = ('email', 'subject', 'message')
+    fields = ('name', 'email', 'subject', 'message')
 
 # def display_attr(obj, atrr: str):
 #     get_display = f'get_{atrr}_display'
