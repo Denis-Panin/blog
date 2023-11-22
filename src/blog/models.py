@@ -49,9 +49,9 @@ class Article(models.Model):
     title = models.CharField('Заголовок', max_length=150)
     description = models.CharField('Короткий опис', max_length=250)
     content = models.TextField('Текст')
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True)
 
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=False)
     updated = models.DateTimeField(default=now)
 
     def save(self, *args, **kwargs):

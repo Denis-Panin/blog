@@ -88,6 +88,13 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Playfair Display", Georgia, "Times New Roman", serif /*rtl:Amiri, Georgia, "Times New Roman", serif;; */;
 }
 
+.clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2; /* Встановіть бажану кількість рядків */
+}
+
 .main_menu {
     background-color: #171A22;
     color: #80838A;
