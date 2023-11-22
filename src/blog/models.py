@@ -50,8 +50,9 @@ class Article(models.Model):
     description = models.CharField('Короткий опис', max_length=250)
     content = models.TextField('Текст')
     slug = models.SlugField(unique=True)
-
-    created = models.DateTimeField(auto_now_add=False)
+    author = models.ForeignKey('Author', on_delete=models.CASCADE)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(default=now)
 
     def save(self, *args, **kwargs):

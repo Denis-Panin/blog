@@ -33,6 +33,12 @@ gb:
 dbo:
 	$(MANAGE) del_books
 
+gc:
+	$(MANAGE) gen_categories
+
+dc:
+	$(MANAGE) del_categories
+
 lint:
 	flake8 ./src
 
