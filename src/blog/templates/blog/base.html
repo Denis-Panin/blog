@@ -107,7 +107,8 @@
                     <h4 class="fst-italic">Categories(Категорії)</h4>
                     <ol class="list-unstyled mb-0">
                         {% for category in categories%}
-                        <li><a href="#">{{ category.name }}</a></li>
+                        <li><a href="{% url 'blog:article_list_category' slug=category.slug %}">{{ category.name }}</a>
+                        </li>
                         {% endfor %}
                     </ol>
                 </div>

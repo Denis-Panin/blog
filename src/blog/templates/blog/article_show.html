@@ -13,9 +13,15 @@
             {{ article.content }}
         </div>
         <br>
+        <div class="author_category">
+            <span>Автор: <a href="#">{{ article.author }}</a></span>
+            <span>Категорія: <a href="{% url 'blog:article_list_category' slug=article.category.slug %}">{{ article.category }}</a></span>
+        </div>
+        <br>
         <div class="update link">
             <a href="{% url 'blog:article_update' slug=article.slug %}" class="btn btn-info">Редактировать</a>
         </div>
+
         <br>
         <div class="update link">
             {% if request.user.is_authenticated %}

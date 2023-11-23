@@ -8,10 +8,6 @@ from . import views
 
 app_name = 'blog'
 urlpatterns = [
-    # path('myview/', views.my_view, name='my_view'),
-    # path('', TemplateView.as_view(template_name='blog/home_page.html'), name='home_page'),  # TODO rework
-    # path('about/', TemplateView.as_view(template_name='blog/about.html'), name='about'),  # TODO rework
-
     path('', views.home_page, name='home_page'),
     path('about_us/', views.about_us, name='about_us'),
     # path('end/registration/',
@@ -19,6 +15,7 @@ urlpatterns = [
     #     name='end_registration'
     #     ),
     path('article/list/', views.ArticleListView.as_view(), name='article_list'),
+    path('article/list/<slug:slug>/', views.article_category, name='article_list_category'),
     # path('posts/list/csv/', views.PostXLSX.as_view(), name='posts_list_csv'),  #TODO rework
     path('article/create/', views.create_article, name='article_create'),
     path('article/<slug:slug>/', views.show_article, name='article_show'),

@@ -2,13 +2,28 @@ from django import forms
 from django.forms import ModelForm, Textarea, TextInput
 from django.utils.translation import gettext_lazy as _
 
-from .models import Author, Article, Subscriber
+from .models import Author, Article, Subscriber, Category
 
 
 class ArticleForm(ModelForm):
+    author = forms.ModelChoiceField(
+        queryset=Author.objects.all().order_by('first_name'),
+        empty_label='Оберіть автора...',
+        widget=forms.Select(attrs={
+            "class": "form-control",
+        }),
+    )
+    category = forms.ModelChoiceField(
+        queryset=Category.objects.all().order_by('name'),
+        empty_label='Оберіть категорію...',
+        widget=forms.Select(attrs={
+            "class": "form-control",
+        }),
+    )
+
     class Meta:
         model = Article
-        fields = ["title", "description", "content"]
+        fields = ["title", "description", "content", "author", "category"]
         widgets = {
             "title": TextInput(attrs={
                 "class": "form-control",

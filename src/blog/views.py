@@ -4,7 +4,7 @@ from django.views.generic import CreateView
 from django_filters.views import FilterView
 from .filrers import BookFilter, ArticleFilter
 from .forms import ArticleForm
-from .models import Author, Book, ContactUs, Article
+from .models import Author, Book, ContactUs, Article, Category
 from .helpers import get_new_articles, get_all_categories
 
 articles = get_new_articles()
@@ -68,6 +68,20 @@ def delete_article(request, slug):
     return redirect('blog:article_list')
 
 
+def article_category(request, slug):
+    articles_categories = Article.objects.filter(category__slug=slug).order_by('-created')
+    category_name = Category.objects.get(slug=slug).name
+    cnt = articles_categories.count()
+    context = {
+        "articles_category": articles_categories,
+        "articles": articles,
+        "categories": categories,
+        "cnt": cnt,
+        "category_name": category_name,
+    }
+    return render(request, 'blog/articles_list_categories.html', context=context)
+
+
 class ArticleListView(FilterView):
     filterset_class = ArticleFilter
 
@@ -78,6 +92,7 @@ class ArticleListView(FilterView):
             f'{key}={val}'
             for key, val in self.request.GET.items() if key != 'page'
         )
+        # code for searching posts
         context['cnt'] = context['object_list'].count()
         context['title'] = 'Усі пости'
         context['articles'] = articles
@@ -101,11 +116,6 @@ def get_authors(request):
 def delete_author(request, slug):
     get_object_or_404(Author, slug=slug).delete()
     return redirect('blog:authors_all')
-
-
-# def get_categories(request):
-#     categories = Category.objects.all().only('name')
-#     return render(request, 'blog/categories.html', {"title": "Categories", "categories": categories})
 
 
 class BooksListView(FilterView):

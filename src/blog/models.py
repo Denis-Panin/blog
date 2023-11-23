@@ -41,6 +41,7 @@ class Subscriber(models.Model):
 
 
 # TODO: likes for Article
+# TODO: Comments for Article
 class Article(models.Model):
     class Meta:
         verbose_name = "Стаття"
@@ -70,6 +71,12 @@ class Category(models.Model):
         verbose_name_plural = "Категорії"
 
     name = models.CharField('Назва категорії', max_length=250)
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f'{self.name}')
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
