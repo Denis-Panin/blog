@@ -1,0 +1,45 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block content %}
+<div class="author_img">
+    <div>
+        <h1>{{ author.first_name}} {{ author.last_name }}</h1>
+        <p>Email author - {{ author.email}}</p>
+        <p>Age - author {{ author.age }}</p>
+    </div>
+    {% if author.image %}
+    <div>
+        <img src="{{ author.image.url }}" width="300"
+             height="200" alt="Author">
+    </div>
+    {% else %}
+        {% if author.gender == 'M'%}
+        <div>
+            <img src="{% static '/assets/img/male.jpg' %}" width="300"
+                 height="200" alt="AuthorICO">
+        </div>
+        {% elif author.gender == 'F'%}
+        <div>
+            <img src="{% static '/assets/img/female.png' %}" width="300"
+                 height="200" alt="AuthorICO">
+        </div>
+        {% endif %}
+    {% endif %}
+
+</div>
+<br>
+<div>
+    <center>
+        <h3>About author</h3>
+    </center>
+    <p>{{ author.about_author }}</p>
+</div>
+<hr>
+<h3>List of Articles - {{ cnt }}</h3>
+{% for article in articles_%}
+<div>
+    <a href="{% url 'blog:article_show' slug=article.slug %}">{{ article.title}}</a>
+</div>
+{% endfor %}
+{% endblock %}

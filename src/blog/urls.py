@@ -27,6 +27,7 @@ urlpatterns = [
     # path('authors/all/', cache.cache_page(60 * 2)(views.authors_all), name='authors_all'),
 
     path('authors/all/', views.get_authors, name='authors_all'),
+    path('author/<slug:slug>/', views.get_author, name='author_get'),
     path('author/delete/<slug:slug>/', views.delete_author, name='author_delete'),
     path('book/list/', views.BooksListView.as_view(), name='book_list'),
 
@@ -35,4 +36,7 @@ urlpatterns = [
     path('contact/', views.ContactUsView.as_view(), name='contact_us'),
     # path('contact/us/list/', views.ContactUsListView.as_view(), name='contact-us-list'),
     path('api/v1/', include('api.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+# ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

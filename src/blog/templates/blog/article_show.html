@@ -14,7 +14,7 @@
         </div>
         <br>
         <div class="author_category">
-            <span>Автор: <a href="#">{{ article.author }}</a></span>
+            <span>Автор: <a href="{% url 'blog:author_get' slug=article.author.slug %}">{{ article.author }}</a></span>
             <span>Категорія: <a href="{% url 'blog:article_list_category' slug=article.category.slug %}">{{ article.category }}</a></span>
         </div>
         <br>

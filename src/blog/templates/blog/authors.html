@@ -10,25 +10,17 @@
         <table class="table table-hover">
             <thead>
             <tr>
-<!--                <th scope="col">ID автора</th>-->
                 <th scope="col">Автор</th>
                 <th scope="col">Email автора</th>
-                <th scope="col">Количество книг</th>
-                {% if request.user.is_authenticated %}
-                <th scope="col">Удалить</th>
-                {% endif %}
+                <th scope="col">Кількість статтей</th>
             </tr>
             </thead>
             <tbody>
             {% for author in authors %}
             <tr>
-<!--                <td scope="row">{{ author.id }}</td>-->
-                <td>{{ author.first_name }} {{ author.last_name}}</td>
+                <td><a href="{% url 'blog:author_get' slug=author.slug %}">{{ author.first_name }} {{ author.last_name}}</a></td>
                 <td>[{{ author.email }}]</td>
-                <td>{{ author.books.count }}</td>
-                {% if request.user.is_authenticated %}
-                <td><a href="{% url 'blog:author_delete' author.slug %}" class="btn btn-danger">Удалить автора</a></td>
-                {% endif %}
+                <td>{{ author.articles.count }}</td>
             </tr>
             {% endfor %}
             </tbody>

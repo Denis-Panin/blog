@@ -103,7 +103,7 @@ class ArticleListView(FilterView):
 
 
 def get_authors(request):
-    authors = Author.objects.all().prefetch_related('books')
+    authors = Author.objects.all().prefetch_related('articles').order_by('first_name')
     context = {
         "title": "Authors",
         "authors": authors,
@@ -111,6 +111,19 @@ def get_authors(request):
         "categories": categories
     }
     return render(request, 'blog/authors.html', context=context)
+
+
+def get_author(request, slug):
+    author = get_object_or_404(Author, slug=slug)
+    articles_ = Article.objects.filter(author=author.id)
+    context = {
+        "author": author,
+        "articles_": articles_,
+        "cnt": articles_.count(),
+        "articles": articles,
+        "categories": categories
+    }
+    return render(request, 'blog/author.html', context=context)
 
 
 def delete_author(request, slug):

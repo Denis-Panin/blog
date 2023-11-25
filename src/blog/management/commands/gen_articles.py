@@ -13,7 +13,7 @@ class Command(BaseCommand):
         for _ in range(int(input('Enter the number of articles: '))):
             author = Author.objects.order_by('?').last()
             category = Category.objects.order_by('?').last()
-            Article(title=f.name(), description=f.words(), content=f.text()*4, author=author,
+            Article(title=f'article title № {cnt_articles}', description=f.words(), content=f.text()*4, author=author,
                     category=category).save()
             cnt_articles += 1
         print(f'Created {cnt_articles} "ARTICLES"')

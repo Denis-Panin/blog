@@ -10,6 +10,7 @@ class Command(BaseCommand):
         f = Faker()
         cnt_authors = 0
         for _ in range(int(input('Number of Authors: '))):
-            Author(first_name=f.first_name(), last_name=f.last_name(), email=f.email(), age=random.randint(1, 100)).save()
+            Author(first_name=f.first_name(), last_name=f.last_name(), email=f.email(),
+                   age=random.randint(1, 100), about_author=f.text()*5).save()
             cnt_authors += 1
         print(f'Created: {cnt_authors} "AUTHORS"')

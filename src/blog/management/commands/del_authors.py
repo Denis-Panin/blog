@@ -8,6 +8,6 @@ class Command(BaseCommand):
         authors = Author.objects.all()
         for author in authors:
             author.delete()
-            print(f'{author.name} - {author.email}')
+            print(f'{author.first_name} - {author.email}')
             cnt_authors += 1
         print(f'Deleted: {cnt_authors} "AUTHORS"')

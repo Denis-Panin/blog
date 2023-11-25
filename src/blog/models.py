@@ -6,14 +6,22 @@ from django.utils.text import slugify
 # TODO from django.utils.translation import gettext_lazy as _
 
 class Author(models.Model):
+    GENDER_CHOICES = [
+        ('M', 'Male'),
+        ('F', 'Female'),
+    ]
+
     class Meta:
         verbose_name = "Автор"
         verbose_name_plural = "Автори"
 
     first_name = models.CharField('Імʼя автора', max_length=100, null=True)
     last_name = models.CharField('Призвище автора', max_length=100, null=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True)
     email = models.EmailField('Email автора', max_length=50, null=True)
     age = models.IntegerField(default=0)
+    about_author = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='author_images/', null=True, blank=True)
     slug = models.SlugField(unique=True, blank=True)
 
     def save(self, *args, **kwargs):
@@ -51,7 +59,7 @@ class Article(models.Model):
     description = models.CharField('Короткий опис', max_length=250)
     content = models.TextField('Текст')
     slug = models.SlugField(unique=True)
-    author = models.ForeignKey('Author', on_delete=models.CASCADE)
+    author = models.ForeignKey('Author', on_delete=models.CASCADE, related_name='articles')
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(default=now)
