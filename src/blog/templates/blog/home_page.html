@@ -130,27 +130,19 @@
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Upvotes</th>
-                    <th>Downvotes</th>
+                    <th>Email</th>
+                    <th>Articles</th>
                 </tr>
                 </thead>
+                {% for author in top_authors%}
                 <tbody>
                 <tr>
-                    <td>Alice</td>
-                    <td>10</td>
-                    <td>11</td>
-                </tr>
-                <tr>
-                    <td>Bob</td>
-                    <td>4</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>Charlie</td>
-                    <td>7</td>
-                    <td>9</td>
+                    <td>{{ author.first_name}} {{ author.last_name}}</td>
+                    <td>{{ author.email }}</td>
+                    <td>{{ author.article_count}}</td>
                 </tr>
                 </tbody>
+                {% endfor %}
             </table>
             <p>Якийсь текст</p>
         </article>

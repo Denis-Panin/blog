@@ -5,14 +5,20 @@ from django_filters.views import FilterView
 from .filrers import BookFilter, ArticleFilter
 from .forms import ArticleForm
 from .models import Author, Book, ContactUs, Article, Category
-from .helpers import get_new_articles, get_all_categories
+from .helpers import get_new_articles, get_all_categories, get_top_authors
 
 articles = get_new_articles()
 categories = get_all_categories()
 
 
 def home_page(request):
-    return render(request, 'blog/home_page.html', {'articles': articles, "categories": categories})
+    top_authors = get_top_authors()
+    context = {
+        'articles': articles,
+        'categories': categories,
+        'top_authors': top_authors
+    }
+    return render(request, 'blog/home_page.html', context=context)
 
 
 def about_us(request):
