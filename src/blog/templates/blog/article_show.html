@@ -18,16 +18,33 @@
             <span>Категорія: <a href="{% url 'blog:article_list_category' slug=article.category.slug %}">{{ article.category }}</a></span>
         </div>
         <br>
-        <div class="update link">
-            <a href="{% url 'blog:article_update' slug=article.slug %}" class="btn btn-info">Редактировать</a>
+        <div>
+            <h2>
+                Commetns
+            </h2>
+            <div>
+                <br>
+                {% for comment in article.comments.all %}
+                <strong><p>{{ comment.user }}</p></strong>
+                {{ comment.comment_text }}
+                <hr>
+                {% endfor %}
+            </div>
         </div>
+<!--        <div class="update link">-->
+<!--            <a href="{% url 'blog:article_update' slug=article.slug %}" class="btn btn-info">Редактировать</a>-->
+<!--        </div>-->
+<!--        <br>-->
+<!--        <div class="update link">-->
+<!--            {% if request.user.is_authenticated %}-->
+<!--            <a href="{% url 'blog:article_delete' article.slug %}" class="btn btn-danger">Удалить статью</a>-->
+<!--            {% endif %}-->
+<!--        </div>-->
 
-        <br>
         <div class="update link">
-            {% if request.user.is_authenticated %}
-            <a href="{% url 'blog:article_delete' article.slug %}" class="btn btn-danger">Удалить статью</a>
-            {% endif %}
+            <a href="{% url 'blog:add_comment' slug=article.slug %}" class="btn btn-success">Додати коментар</a>
         </div>
+        <br>
     </div>
 </div>
 {% endblock%}

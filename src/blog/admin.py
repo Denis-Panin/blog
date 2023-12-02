@@ -1,16 +1,16 @@
 # from account.models import Avatar, User
 from django.contrib import admin
 
-from .models import Author, Book, Category, ContactUs, Article, Subscriber
+from .models import Author, Book, Category, ContactUs, Comment, Article, Subscriber
+
+
+class CommentInline(admin.TabularInline):
+    model = Comment
 
 
 class ArticleAdmin(admin.ModelAdmin):
+    inlines = [CommentInline]
     list_display = [
-        'title',
-        'description',
-    ]
-
-    list_filter = [
         'title',
         'description',
     ]
@@ -42,5 +42,4 @@ admin.site.register(Book, BookAdmin)
 admin.site.register(Category)
 admin.site.register(Subscriber)
 admin.site.register(ContactUs)
-# admin.site.register(User)
-# admin.site.register(Avatar)
+admin.site.register(Comment)

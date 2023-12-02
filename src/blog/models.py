@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 
 # TODO from django.utils.translation import gettext_lazy as _
@@ -49,7 +50,19 @@ class Subscriber(models.Model):
 
 
 # TODO: likes for Article
-# TODO: Comments for Article
+class Comment(models.Model):
+    article = models.ForeignKey('Article', on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment_text = models.TextField()
+
+    # like = models.ForeignKey
+    # dislike = models.ForeignKey
+    # answer_text = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f'Comment for {self.article}'
+
+
 class Article(models.Model):
     class Meta:
         verbose_name = "Стаття"

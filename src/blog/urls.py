@@ -22,6 +22,8 @@ urlpatterns = [
     path('article/update/<slug:slug>/', views.update_article, name='article_update'),
     path('article/delete/<slug:slug>/', views.delete_article, name='article_delete'),
 
+    path('article/<slug:slug>/comment/', views.add_comment_to_article, name='add_comment'),
+
     # path('subscribers/', views.get_subscribers, name='subscribers'),
     # path('subscriber/add/', views.add_subscriber, name='subscriber_add'),
     # path('authors/all/', cache.cache_page(60 * 2)(views.authors_all), name='authors_all'),

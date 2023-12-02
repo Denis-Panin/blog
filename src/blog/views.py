@@ -3,9 +3,11 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django_filters.views import FilterView
 from .filrers import BookFilter, ArticleFilter
-from .forms import ArticleForm
+from .forms import ArticleForm, CommentForm
 from .models import Author, Book, ContactUs, Article, Category
 from .helpers import get_new_articles, get_all_categories, get_top_authors
+from django.contrib.auth.decorators import login_required
+
 
 articles = get_new_articles()
 categories = get_all_categories()
@@ -106,6 +108,28 @@ class ArticleListView(FilterView):
         return context
 
     template_name = 'blog/articles_list.html'
+
+
+@login_required(login_url="account:login")
+def add_comment_to_article(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.article = article
+            comment.user = request.user
+            comment.save()
+            return redirect('blog:article_show', slug=slug)
+    else:
+        form = CommentForm()
+    context = {
+        'form': form,
+        'article': article,
+        'articles': articles,
+        'categories': categories
+    }
+    return render(request, 'blog/add_comment_to_article.html', context=context)
 
 
 def get_authors(request):

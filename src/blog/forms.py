@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm, Textarea, TextInput
 from django.utils.translation import gettext_lazy as _
 
-from .models import Author, Article, Subscriber, Category
+from .models import Author, Article, Subscriber, Category, Comment
 
 
 class ArticleForm(ModelForm):
@@ -61,4 +61,13 @@ class SubscriberForm(ModelForm):
                 "class": "form-control",
                 "placeholder": "Email подписчика",
             })
+        }
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['comment_text']
+        widgets = {
+            'comment_text': forms.Textarea(attrs={'rows': 4}),
         }
