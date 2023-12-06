@@ -17,18 +17,24 @@
                         <path d="M21 21l-5.2-5.2"/>
                     </svg>
                 </a>
-                <a class="btn btn-sm btn-outline-secondary" href="{% url 'account:login' %}">Sign in</a>
+                <div>
+                    {% if request.user.is_authenticated %}
+                    Hello, {{ request.user.username }}!
+                    <a class="btn btn-sm a_btn btn-outline-secondary" href="{% url 'account:log_out' %}">EXIT</a>
+                    {% else %}
+                </div>
+                <a class="btn btn-sm a_btn btn-outline-secondary" href="{% url 'account:login' %}">Sign in</a>
+                {% endif %}
             </div>
         </div>
     </header>
-
     <div class="nav-scroller mb-3 border-bottom">
         <nav class="nav nav-underline justify-content-center">
-            <a class="nav-item nav-link link-body-emphasis" href="{% url 'blog:article_list' %}">Articles</a>
-            <a class="nav-item nav-link link-body-emphasis" href="{% url 'blog:authors_all' %}">Authors</a>
-<!--            <a class="nav-item nav-link link-body-emphasis" href="{% url 'blog:book_list' %}">Books</a>-->
-            <a class="nav-item nav-link link-body-emphasis" href="{% url 'blog:about_us' %}">About US</a>
-            <a class="nav-item nav-link link-body-emphasis" href="{% url 'blog:contact_us' %}">Contact US</a>
+            <a class="nav-item nav-link link-body-emphasis a_btn" href="{% url 'blog:article_list' %}">Articles</a>
+            <a class="nav-item nav-link link-body-emphasis a_btn" href="{% url 'blog:authors_all' %}">Authors</a>
+            <!--            <a class="nav-item nav-link link-body-emphasis" href="{% url 'blog:book_list' %}">Books</a>-->
+            <a class="nav-item nav-link link-body-emphasis a_btn" href="{% url 'blog:about_us' %}">About US</a>
+            <a class="nav-item nav-link link-body-emphasis a_btn" href="{% url 'blog:contact_us' %}">Contact US</a>
         </nav>
     </div>
 </div>

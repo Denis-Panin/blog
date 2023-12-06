@@ -1,5 +1,6 @@
 # from account.forms import AvatarForm, UserRegistrationForm
 # from account.models import Avatar, User
+from time import sleep
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
@@ -12,41 +13,46 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 
-from .forms import SignUpForm
-
-
-def logout_view(request):
-    logout(request)
-    return redirect('account:login')
+from .forms import LogInForm, SignUpForm
+from django.contrib import messages
 
 
 def sign_in(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, request.POST)
+        form = LogInForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('blog:home_page')
+                next_url = request.POST.get('next', request.GET.get('next', None))
+                if next_url:
+                    return redirect(next_url)
+                else:
+                    return redirect('blog:home_page')
     else:
-        form = AuthenticationForm()
-
+        form = LogInForm()
     return render(request, 'account/login.html', {'form': form})
 
 
 def sign_up(request):
+    account_created = False
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('account:login')  # Перенаправлення на сторінку логіну після реєстрації
+            account_created = True
+            messages.success(request, 'Account created')
+            form = SignUpForm()
     else:
         form = SignUpForm()
-    return render(request, 'account/sign-up.html', {'form': form})
+    return render(request, 'account/sign-up.html', {'form': form, 'account_created': account_created})
 
 
+def logout_view(request):
+    logout(request)
+    return redirect('blog:home_page')
 # =================================================================================================
 
 # class ViewMyProfile(LoginRequiredMixin, ListView):

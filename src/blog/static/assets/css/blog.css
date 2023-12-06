@@ -75,6 +75,19 @@
     display: block !important;
 }
 
+a {
+  text-decoration: none;
+  color: #000; /* Задайте початковий колір тексту посилань */
+}
+
+a:hover {
+  color: #6b6b6b; /* Задайте колір тексту посилань при наведенні */
+  text-decoration:  underline;
+}
+
+.a_btn:hover {
+    text-decoration: none;
+}
 /*--------------------*/
 
 
@@ -92,7 +105,7 @@ h1, h2, h3, h4, h5, h6 {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    -webkit-line-clamp: 2; /* Встановіть бажану кількість рядків */
+    -webkit-line-clamp: 2;
 }
 
 .main_menu {
@@ -110,13 +123,51 @@ h1, h2, h3, h4, h5, h6 {
 .blog_navbar {
     background-color: red;
 }
-
 /*-----Home page------*/
 
 
 /*-----Log in------*/
-.form_login {
-    margin: 30px;
+.container_form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    margin: 0;
+}
+
+.form_body {
+    border: 2px solid #000;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.form_body_item {
+    padding: 10px;
+    margin: 5px;
+    display:flex;
+    flex-direction: column;
+}
+
+.form_body_item_input {
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    margin: 5px;
+}
+
+.form_body_item_btn {
+    background: #E9ECEF;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    margin: 5px;
+}
+
+.error_list {
+    color: red;
+    font-weight: bold;
 }
 /*-----Log in------*/
 

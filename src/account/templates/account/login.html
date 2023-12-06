@@ -12,15 +12,78 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
+<header class="border-bottom lh-1 py-3">
+    <div class="row flex-nowrap justify-content-center">
+        <div class="col-4 text-center">
+            <a class="blog-header-logo text-body-emphasis text-decoration-none" href="{% url 'blog:home_page' %}">Blog
+                World</a>
+        </div>
+    </div>
+</header>
 <body>
-<div class="form_login">
-    <h2>Log IN</h2>
-    <form method="post" action="{% url 'account:login' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-primary" type="submit">Login</button>
-        <span><a href="{% url 'account:sign_up' %}">Create acccount</a></span>
-    </form>
+<div class="container">
+    <br>
+    <center>
+        {% if form.errors %}
+        <div>
+            <p class="error_list">
+                {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                {{ error }}
+                {% endfor %}
+                {% endfor %}
+            </p>
+        </div>
+        {% endif %}
+    </center>
+    <div class="container_form">
+        <div class="form_body">
+            <h2>Log IN</h2>
+            <form method="post" action="{% url 'account:login' %}">
+                {% csrf_token %}
+                <div class="form_body_item">
+                    {{ form.username }}
+                    {{ form.password }}
+                    <center><span><input type="checkbox" onclick="showPassword()"> Show password</span></center>
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+                    <button class="btn form_body_item_btn btn-sm btn-outline-secondary" type="submit">Login</button>
+                </div>
+            </form>
+            <center><span><a href="{% url 'account:sign_up' %}">Create acccount</a></span></center>
+        </div>
+    </div>
+    <footer class="py-5">
+        <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+            <p>© 2023</p>
+            <ul class="list-unstyled d-flex">
+                <li class="ms-3"><a class="link-body-emphasis" href="#">
+                    <svg class="bi" width="24" height="24">
+                        <use xlink:href="#twitter"></use>
+                    </svg>
+                </a></li>
+                <li class="ms-3"><a class="link-body-emphasis" href="#">
+                    <svg class="bi" width="24" height="24">
+                        <use xlink:href="#instagram"></use>
+                    </svg>
+                </a></li>
+                <li class="ms-3"><a class="link-body-emphasis" href="#">
+                    <svg class="bi" width="24" height="24">
+                        <use xlink:href="#facebook"></use>
+                    </svg>
+                </a></li>
+            </ul>
+        </div>
+    </footer>
 </div>
+<script>
+    function showPassword() {
+    var passwordField = document.getElementById("id_password");
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+    } else {
+        passwordField.type = "password";
+    }
+}
+</script>
 </body>
 </html>
