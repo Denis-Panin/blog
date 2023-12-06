@@ -1,9 +1,9 @@
 from account.models import User
+from blog.models import Article, Category, ContactUs
 import pytest
-from blog.models import Category, ContactUs, Article
 
 
-@pytest.fixture(autouse=True, scope="function")
+@pytest.fixture(autouse=True, scope='function')
 def enable_db_access_for_all_tests(db):
     pass
 
@@ -19,7 +19,7 @@ def usr_fixt():
 
 @pytest.fixture(scope='function')
 def post_fixt():
-    post = Post.objects.create()
+    post = Article.objects.create()
     yield post
 
 

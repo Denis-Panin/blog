@@ -1,8 +1,9 @@
 import os
-from dotenv import load_dotenv
 from pathlib import Path
 
-from celery.schedules import crontab
+from dotenv import load_dotenv
+
+# from celery.schedules import crontab
 
 load_dotenv()
 

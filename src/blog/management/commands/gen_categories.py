@@ -1,7 +1,6 @@
+from blog.models import Category
 from django.core.management.base import BaseCommand
 from faker import Faker
-
-from blog.models import Category
 
 
 class Command(BaseCommand):

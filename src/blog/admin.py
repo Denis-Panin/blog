@@ -1,7 +1,15 @@
 # from account.models import Avatar, User
 from django.contrib import admin
 
-from .models import Author, Book, Category, ContactUs, Comment, Article, Subscriber
+from .models import (
+    Article,
+    Author,
+    Book,
+    Category,
+    Comment,
+    ContactUs,
+    Subscriber
+)
 
 
 class CommentInline(admin.TabularInline):
@@ -18,7 +26,8 @@ class ArticleAdmin(admin.ModelAdmin):
     actions = None
 
     def get_readonly_fields(self, request, obj=None):
-        if request.user.is_superuser or request.user.has_perm('blog.post_edit_all'):
+        if request.user.is_superuser or request.user.has_perm(
+                'blog.post_edit_all'):
             return ()
         return super().get_readonly_fields(request, obj)
 

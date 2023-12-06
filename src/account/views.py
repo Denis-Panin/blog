@@ -1,20 +1,9 @@
-# from account.forms import AvatarForm, UserRegistrationForm
-# from account.models import Avatar, User
-from time import sleep
-
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse_lazy
-from django.views import View
-from django.views.generic import CreateView, ListView, UpdateView
-
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
 from django.contrib.auth import logout
+from django.shortcuts import redirect, render
 
 from .forms import LogInForm, SignUpForm
-from django.contrib import messages
 
 
 def sign_in(request):
@@ -26,14 +15,21 @@ def sign_in(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                next_url = request.POST.get('next', request.GET.get('next', None))
+                next_url = request.POST.get(
+                    'next',
+                    request.GET.get('next', None)
+                )
                 if next_url:
                     return redirect(next_url)
                 else:
                     return redirect('blog:home_page')
     else:
         form = LogInForm()
-    return render(request, 'account/login.html', {'form': form})
+    return render(
+        request,
+        'account/login.html',
+        {'form': form}
+    )
 
 
 def sign_up(request):
@@ -47,7 +43,8 @@ def sign_up(request):
             form = SignUpForm()
     else:
         form = SignUpForm()
-    return render(request, 'account/sign-up.html', {'form': form, 'account_created': account_created})
+    return render(request, 'account/sign-up.html',
+                  {'form': form, 'account_created': account_created})
 
 
 def logout_view(request):

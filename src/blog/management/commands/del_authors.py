@@ -1,5 +1,5 @@
-from django.core.management.base import BaseCommand
 from blog.models import Author
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):

@@ -1,7 +1,6 @@
+from blog.models import Author, Book, Category
 from django.core.management.base import BaseCommand
 from faker import Faker
-
-from blog.models import Author, Book, Category
 
 
 class Command(BaseCommand):
@@ -11,7 +10,10 @@ class Command(BaseCommand):
         for _ in range(int(input('Number of books: '))):
             author = Author.objects.order_by('?').last()
             category = Category.objects.order_by('?').last()
-            Book(title=f.random_letters(), author=author, category=category).save()
+            Book(
+                title=f.random_letters(),
+                author=author,
+                category=category
+            ).save()
             cnt_books += 1
         print(f'Created: {cnt_books} "BOOKS"')
-

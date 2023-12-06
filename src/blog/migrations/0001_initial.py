@@ -16,10 +16,31 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Author',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=100, null=True, verbose_name='Імʼя автора')),
-                ('last_name', models.CharField(max_length=100, null=True, verbose_name='Призвище автора')),
-                ('email', models.EmailField(max_length=50, null=True, verbose_name='Email автора')),
+                ('id', models.BigAutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID'
+                    )
+                 ),
+                ('first_name', models.CharField(
+                    max_length=100,
+                    null=True,
+                    verbose_name='Імʼя автора'
+                    )
+                 ),
+                ('last_name', models.CharField(
+                    max_length=100,
+                    null=True,
+                    verbose_name='Призвище автора'
+                    )
+                 ),
+                ('email', models.EmailField(
+                    max_length=50,
+                    null=True,
+                    verbose_name='Email автора'
+                    )
+                 ),
                 ('age', models.IntegerField(default=0)),
                 ('slug', models.SlugField(blank=True, unique=True)),
             ],
@@ -31,8 +52,18 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=250, verbose_name='Назва категорії')),
+                ('id', models.BigAutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID'
+                    )
+                 ),
+                ('name', models.CharField(
+                    max_length=250,
+                    verbose_name='Назва категорії'
+                    )
+                 ),
             ],
             options={
                 'verbose_name': 'Категорія',
@@ -42,7 +73,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ContactUs',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False, verbose_name='ID'
+                     )
+                 ),
                 ('name', models.CharField(max_length=100, null=True)),
                 ('email', models.EmailField(max_length=254)),
                 ('subject', models.CharField(max_length=120)),
@@ -56,12 +92,34 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Subscriber',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, null=True, verbose_name='Імʼя автора')),
-                ('email_to', models.EmailField(max_length=254, verbose_name='Email підписника')),
+                ('id', models.BigAutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID'
+                    )
+                 ),
+                ('name', models.CharField(
+                    max_length=100,
+                    null=True,
+                    verbose_name='Імʼя автора'
+                    )
+                 ),
+                ('email_to', models.EmailField(
+                    max_length=254,
+                    verbose_name='Email підписника'
+                    )
+                 ),
                 ('created', models.DateTimeField(auto_now_add=True)),
-                ('updated', models.DateTimeField(default=django.utils.timezone.now)),
-                ('author_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='blog.author')),
+                ('updated', models.DateTimeField(
+                    default=django.utils.timezone.now
+                    )
+                 ),
+                ('author_id', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to='blog.author'
+                    )
+                 ),
             ],
             options={
                 'verbose_name': 'Підписник',
@@ -71,10 +129,32 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Book',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=250, verbose_name='Назва книги')),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='books', to='blog.author')),
-                ('category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='books', to='blog.category')),
+                ('id', models.BigAutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID'
+                    )
+                 ),
+                ('title', models.CharField(
+                    max_length=250,
+                    verbose_name='Назва книги'
+                    )
+                 ),
+                ('author', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='books',
+                    to='blog.author'
+                    )
+                 ),
+                ('category', models.ForeignKey(
+                    blank=True,
+                    null=True,
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='books',
+                    to='blog.category'
+                    )
+                 ),
             ],
             options={
                 'verbose_name': 'Книга',
@@ -84,14 +164,35 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Article',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=150, verbose_name='Заголовок')),
-                ('description', models.CharField(max_length=250, verbose_name='Короткий опис')),
+                ('id', models.BigAutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID'
+                    )
+                 ),
+                ('title', models.CharField(
+                    max_length=150,
+                    verbose_name='Заголовок'
+                    )
+                 ),
+                ('description', models.CharField(
+                    max_length=250,
+                    verbose_name='Короткий опис'
+                    )
+                 ),
                 ('content', models.TextField(verbose_name='Текст')),
                 ('slug', models.SlugField(unique=True)),
                 ('created', models.DateTimeField()),
-                ('updated', models.DateTimeField(default=django.utils.timezone.now)),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='blog.author')),
+                ('updated', models.DateTimeField(
+                    default=django.utils.timezone.now
+                    )
+                 ),
+                ('author', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to='blog.author'
+                    )
+                 ),
             ],
             options={
                 'verbose_name': 'Стаття',

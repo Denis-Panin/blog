@@ -1,8 +1,8 @@
-from api.generics import AuthorSerializer, ArticleSerializer
+from api.generics import ArticleSerializer, AuthorSerializer
+from blog.models import Article, Author
 from rest_framework import generics, viewsets
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
-from blog.models import Article, Author
 
 
 class ArticleAPIViewSet(viewsets.ModelViewSet):

@@ -1,6 +1,5 @@
-import django_filters
-
 from blog.models import Article, Book
+import django_filters
 
 
 class ArticleFilter(django_filters.FilterSet):

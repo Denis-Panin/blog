@@ -1,6 +1,5 @@
-from rest_framework import serializers
-
 from blog.models import Article, Author
+from rest_framework import serializers
 
 
 class ArticleSerializer(serializers.ModelSerializer):

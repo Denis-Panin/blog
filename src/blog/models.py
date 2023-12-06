@@ -1,7 +1,7 @@
-from django.db import models
-from django.utils.timezone import now
-from django.utils.text import slugify
 from django.contrib.auth.models import User
+from django.db import models
+from django.utils.text import slugify
+from django.utils.timezone import now
 
 
 # TODO from django.utils.translation import gettext_lazy as _
@@ -13,16 +13,28 @@ class Author(models.Model):
     ]
 
     class Meta:
-        verbose_name = "Автор"
-        verbose_name_plural = "Автори"
+        verbose_name = 'Автор'
+        verbose_name_plural = 'Автори'
 
-    first_name = models.CharField('Імʼя автора', max_length=100, null=True)
-    last_name = models.CharField('Призвище автора', max_length=100, null=True)
+    first_name = models.CharField(
+        'Імʼя автора',
+        max_length=100,
+        null=True
+    )
+    last_name = models.CharField(
+        'Призвище автора',
+        max_length=100,
+        null=True
+    )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True)
     email = models.EmailField('Email автора', max_length=50, null=True)
     age = models.IntegerField(default=0)
     about_author = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to='author_images/', null=True, blank=True)
+    image = models.ImageField(
+        upload_to='author_images/',
+        null=True,
+        blank=True
+    )
     slug = models.SlugField(unique=True, blank=True)
 
     def save(self, *args, **kwargs):
@@ -36,12 +48,12 @@ class Author(models.Model):
 
 class Subscriber(models.Model):
     class Meta:
-        verbose_name = "Підписник"
-        verbose_name_plural = "Підписники"
+        verbose_name = 'Підписник'
+        verbose_name_plural = 'Підписники'
 
     name = models.CharField('Імʼя автора', max_length=100, null=True)
-    email_to = models.EmailField("Email підписника")
-    author_id = models.ForeignKey("Author", on_delete=models.CASCADE)
+    email_to = models.EmailField('Email підписника')
+    author_id = models.ForeignKey('Author', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(default=now)
 
@@ -51,7 +63,8 @@ class Subscriber(models.Model):
 
 # TODO: likes for Article
 class Comment(models.Model):
-    article = models.ForeignKey('Article', on_delete=models.CASCADE, related_name='comments')
+    article = models.ForeignKey('Article', on_delete=models.CASCADE,
+                                related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     comment_text = models.TextField()
 
@@ -65,14 +78,18 @@ class Comment(models.Model):
 
 class Article(models.Model):
     class Meta:
-        verbose_name = "Стаття"
-        verbose_name_plural = "Статті"
+        verbose_name = 'Стаття'
+        verbose_name_plural = 'Статті'
 
     title = models.CharField('Заголовок', max_length=150)
     description = models.CharField('Короткий опис', max_length=250)
     content = models.TextField('Текст')
     slug = models.SlugField(unique=True)
-    author = models.ForeignKey('Author', on_delete=models.CASCADE, related_name='articles')
+    author = models.ForeignKey(
+        'Author',
+        on_delete=models.CASCADE,
+        related_name='articles'
+    )
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(default=now)
@@ -88,8 +105,8 @@ class Article(models.Model):
 
 class Category(models.Model):
     class Meta:
-        verbose_name = "Категорія"
-        verbose_name_plural = "Категорії"
+        verbose_name = 'Категорія'
+        verbose_name_plural = 'Категорії'
 
     name = models.CharField('Назва категорії', max_length=250)
     slug = models.SlugField(unique=True, blank=True)
@@ -105,12 +122,17 @@ class Category(models.Model):
 
 class Book(models.Model):
     class Meta:
-        verbose_name = "Книга"
-        verbose_name_plural = "Книги"
+        verbose_name = 'Книга'
+        verbose_name_plural = 'Книги'
 
     title = models.CharField('Назва книги', max_length=250)
     author = models.ForeignKey(Author, models.CASCADE, related_name='books')
-    category = models.ForeignKey(Category, models.CASCADE, related_name='books', null=True, blank=True)
+    category = models.ForeignKey(
+        Category, models.CASCADE,
+        related_name='books',
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return self.title
@@ -118,8 +140,8 @@ class Book(models.Model):
 
 class ContactUs(models.Model):
     class Meta:
-        verbose_name = "Звернення"
-        verbose_name_plural = "Звернення"
+        verbose_name = 'Звернення'
+        verbose_name_plural = 'Звернення'
 
     name = models.CharField(max_length=100, null=True)
     email = models.EmailField()
