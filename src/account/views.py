@@ -1,6 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 
 from .forms import LogInForm, SignUpForm
@@ -50,51 +49,3 @@ def sign_up(request):
 def logout_view(request):
     logout(request)
     return redirect('blog:home_page')
-# =================================================================================================
-
-# class ViewMyProfile(LoginRequiredMixin, ListView):
-#     queryset = User.objects.all()
-#     template_name = 'account/user_list.html'
-#
-#
-# class MyProfile(LoginRequiredMixin, UpdateView):
-#     queryset = User.objects.filter(is_active=True)
-#     fields = ('first_name', 'last_name', 'username', 'email')
-#     success_url = reverse_lazy('home_page')
-#
-#     def get_object(self, queryset=None):
-#         return self.request.user
-#
-#
-# class SignUpView(CreateView):
-#     model = User
-#     form_class = UserRegistrationForm
-#     template_name = "account/user_sign_up.html"
-#     success_url = reverse_lazy("home_page")
-#
-#
-# class ActivateUserView(View):
-#     def get(self, request, confirmation_token):
-#         user = get_object_or_404(User, confirmation_token=confirmation_token)
-#         user.is_active = True
-#         user.save(update_fields=("is_active",))
-#         return redirect("end_registration")
-#
-#
-# class AvatarCreate(LoginRequiredMixin, CreateView):
-#     model = Avatar
-#     form_class = AvatarForm
-#     success_url = reverse_lazy('home_page')
-#
-#     def get_form(self, form_class=None):
-#         if form_class is None:
-#             form_class = self.get_form_class()
-#         return form_class(request=self.request, **self.get_form_kwargs())
-#
-#
-# class AvatarList(LoginRequiredMixin, ListView):
-#     queryset = Avatar.objects.all()
-#
-#     def get_queryset(self):
-#         queryset = super().get_queryset()
-#         return queryset.filter(user=self.request.user)

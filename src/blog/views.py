@@ -47,7 +47,7 @@ def create_article(request):
     }
     return render(
         request,
-        'blog/article_create.html',
+        'blog/article/article_create.html',
         context=context
     )
 
@@ -62,7 +62,7 @@ def show_article(request, slug):
     }
     return render(
         request,
-        'blog/article_show.html',
+        'blog/article/article_show.html',
         context=context
     )
 
@@ -83,7 +83,7 @@ def update_article(request, slug):
     }
     return render(
         request,
-        'blog/article_update.html',
+        'blog/article/article_update.html',
         context=context
     )
 
@@ -108,7 +108,7 @@ def article_category(request, slug):
     }
     return render(
         request,
-        'blog/articles_list_categories.html',
+        'blog/article/articles_list_categories.html',
         context=context
     )
 
@@ -130,7 +130,7 @@ class ArticleListView(FilterView):
         context['categories'] = categories
         return context
 
-    template_name = 'blog/articles_list.html'
+    template_name = 'blog/article/articles_list.html'
 
 
 @login_required(login_url='account:login')
@@ -169,7 +169,7 @@ def get_authors(request):
         'articles': articles,
         'categories': categories
     }
-    return render(request, 'blog/authors.html', context=context)
+    return render(request, 'blog/author/authors.html', context=context)
 
 
 def get_author(request, slug):
@@ -182,7 +182,7 @@ def get_author(request, slug):
         'articles': articles,
         'categories': categories
     }
-    return render(request, 'blog/author.html', context=context)
+    return render(request, 'blog/author/author.html', context=context)
 
 
 def delete_author(request, slug):

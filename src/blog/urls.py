@@ -10,12 +10,6 @@ app_name = 'blog'
 urlpatterns = [
     path('', views.home_page, name='home_page'),
     path('about_us/', views.about_us, name='about_us'),
-    # path(
-    #     'end/registration/',
-    #     TemplateView.as_view(template_name='blog/thanks_for_activation.html'),
-    #     # TODO rework
-    #     name='end_registration'
-    # ),
     path(
         'article/list/',
         views.ArticleListView.as_view(),
@@ -23,18 +17,12 @@ urlpatterns = [
     ),
     path('article/list/<slug:slug>/', views.article_category,
          name='article_list_category'),
-    # path(
-    #     'posts/list/csv/',
-    #     views.PostXLSX.as_view(),
-    #     name='posts_list_csv'
-    # ),  # TODO rework
     path('article/create/', views.create_article, name='article_create'),
     path('article/<slug:slug>/', views.show_article, name='article_show'),
     path('article/update/<slug:slug>/', views.update_article,
          name='article_update'),
     path('article/delete/<slug:slug>/', views.delete_article,
          name='article_delete'),
-
     path('article/<slug:slug>/comment/', views.add_comment_to_article,
          name='add_comment'),
 
@@ -54,14 +42,7 @@ urlpatterns = [
         name='author_delete'
     ),
     path('book/list/', views.BooksListView.as_view(), name='book_list'),
-
-    # path('categories/all/', views.get_categories, name='categories_all'),
-
     path('contact/', views.ContactUsView.as_view(), name='contact_us'),
-    # path(
-    #     'contact/us/list/',
-    #     views.ContactUsListView.as_view(),
-    #     name='contact-us-list'
-    # ),
+
     path('api/v1/', include('api.urls')),
 ]
