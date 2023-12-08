@@ -32,6 +32,7 @@ def about_us(request):
     )
 
 
+@login_required(login_url='account:login')
 def create_article(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST)
@@ -125,7 +126,7 @@ class ArticleListView(FilterView):
         )
         # code for searching articles
         context['cnt'] = context['object_list'].count()
-        context['title'] = 'Усі пости'
+        context['title'] = 'Articles'
         context['articles'] = articles
         context['categories'] = categories
         return context

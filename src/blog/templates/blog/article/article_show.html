@@ -14,8 +14,18 @@
         </div>
         <br>
         <div class="author_category">
-            <span>Автор: <a href="{% url 'blog:author_get' slug=article.author.slug %}">{{ article.author }}</a></span>
-            <span>Категорія: <a href="{% url 'blog:article_list_category' slug=article.category.slug %}">{{ article.category }}</a></span>
+            <p class="icon-link gap-1 icon-link-hover"><span class="author_category_item">Автор:</span><a
+                    href="{% url 'blog:author_get' slug=article.author.slug %}">{{ article.author }}</a>
+                <svg class="bi">
+                    <use xlink:href="#chevron-right"/>
+                </svg>
+            </p>
+            <p class="icon-link gap-1 icon-link-hover"><span class="author_category_item">Категорія:</span><a
+                    href="{% url 'blog:article_list_category' slug=article.category.slug %}">{{ article.category }}</a>
+                <svg class="bi">-->
+                    <use xlink:href="#chevron-right"/>
+                </svg>
+            </p>
         </div>
         <br>
         <div>
@@ -31,15 +41,15 @@
                 {% endfor %}
             </div>
         </div>
-<!--        <div class="update link">-->
-<!--            <a href="{% url 'blog:article_update' slug=article.slug %}" class="btn btn-info">Редактировать</a>-->
-<!--        </div>-->
-<!--        <br>-->
-<!--        <div class="update link">-->
-<!--            {% if request.user.is_authenticated %}-->
-<!--            <a href="{% url 'blog:article_delete' article.slug %}" class="btn btn-danger">Удалить статью</a>-->
-<!--            {% endif %}-->
-<!--        </div>-->
+        <!--        <div class="update link">-->
+        <!--            <a href="{% url 'blog:article_update' slug=article.slug %}" class="btn btn-info">Редактировать</a>-->
+        <!--        </div>-->
+        <!--        <br>-->
+        <!--        <div class="update link">-->
+        <!--            {% if request.user.is_authenticated %}-->
+        <!--            <a href="{% url 'blog:article_delete' article.slug %}" class="btn btn-danger">Удалить статью</a>-->
+        <!--            {% endif %}-->
+        <!--        </div>-->
 
         <div class="update link">
             <a href="{% url 'blog:add_comment' slug=article.slug %}" class="btn a_btn btn-success">Додати коментар</a>

@@ -81,13 +81,13 @@ a {
 }
 
 a:hover {
-  color: #6b6b6b; /* Задайте колір тексту посилань при наведенні */
-  text-decoration:  underline;
+   color: red;
 }
 
 .a_btn:hover {
     text-decoration: none;
 }
+
 /*--------------------*/
 
 
@@ -175,6 +175,9 @@ h1, h2, h3, h4, h5, h6 {
 .author_category {
     display: flex;
     justify-content: space-between;
+}
+.author_category_item {
+    font-family:"Playfair Display", Georgia, "Times New Roman", serif /*rtl:Amiri, Georgia, "Times New Roman", serif;; */
 }
 /*-----Article Show------*/
 

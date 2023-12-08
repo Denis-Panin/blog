@@ -4,19 +4,35 @@
 {% endblock %}
 {% block content%}
 <div class="content">
-    {% if request.user.is_authenticated %}
-    <a href="{% url 'blog:article_create' %}">Create article</a>
-    {% endif %}
-    <h2>Колличество articles: {{ cnt }}</h2>
-    <h1>Articles/{{ category_name }}</h1>
+    <center><h1>Articles: {{ cnt }}</h1></center>
+    <center><h3>"{{ category_name }}"</h3></center>
+    <center>
+        <a class="icon-link gap-1 icon-link-hover" href="{% url 'blog:article_create' %}">
+            Create article
+            <svg class="bi">
+                <use xlink:href="#chevron-right"/>
+            </svg>
+        </a>
+    </center>
     <hr>
     {% for article in articles_category %}
-    <div class="post">
-        <br>
-        <h4>
-            {{ forloop.counter }}) <a href="{% url 'blog:article_show' slug=article.slug %}">{{ article.title }}</a>
-        </h4>
-        <p>{{ article.content }}</p>
+    <div>
+        <div>
+            <h4>
+                <center>{{ article.title }}</center>
+            </h4>
+            {% if article.content|length > 200 %}
+            {{ article.content|slice:":200" }}...
+            <a href="{% url 'blog:article_show' article.slug %}"
+               class="icon-link gap-1 icon-link-hover">Continue reading
+                <svg class="bi">-->
+                    <use xlink:href="#chevron-right"/>
+                </svg>
+            </a>
+            {% else %}
+            {{ article.content }}
+            {% endif %}
+        </div>
     </div>
     <hr>
     {% endfor %}
