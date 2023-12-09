@@ -6,7 +6,7 @@
 <div class="content">
     <center><h1>Articles: {{ cnt }}</h1></center>
     <center>
-        <a class="icon-link gap-1 icon-link-hover" href="{% url 'blog:article_create' %}">
+        <a class="icon-link gap-1 icon-link-hover continue_reading" href="{% url 'blog:article_create' %}">
             Create article
             <svg class="bi">-->
                 <use xlink:href="#chevron-right"/>
@@ -35,7 +35,7 @@
             {% if article.content|length > 200 %}
             {{ article.content|slice:":200" }}...
             <a href="{% url 'blog:article_show' article.slug %}"
-               class="icon-link gap-1 icon-link-hover">Continue reading
+               class="icon-link gap-1 icon-link-hover continue_reading">Continue reading
                 <svg class="bi">-->
                     <use xlink:href="#chevron-right"/>
                 </svg>

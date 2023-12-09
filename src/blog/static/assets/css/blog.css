@@ -181,6 +181,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 /*-----Article Show------*/
 
+/*-----Article List------*/
+.continue_reading {
+    font-weight: bold;
+}
+/*-----Article List------*/
+
 /*-----Author------*/
 .author_img {
     display: flex;
