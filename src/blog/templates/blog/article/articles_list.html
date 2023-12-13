@@ -6,7 +6,8 @@
 <div class="content">
     <center><h1>Articles: {{ cnt }}</h1></center>
     <center>
-        <a class="icon-link gap-1 icon-link-hover continue_reading" href="{% url 'blog:article_create' %}">
+        <a class="icon-link gap-1 icon-link-hover continue_reading"
+           href="{% url 'blog:article_create' %}">
             Create article
             <svg class="bi">-->
                 <use xlink:href="#chevron-right"/>
@@ -20,7 +21,9 @@
                 {{ filter.form.title }}
                 {{ filter.form.description }}
                 {{ filter.form.content }}
-                <button type="submit" class="form_body_item_btn btn  a_btn btn-outline-secondary">Search
+                <button type="submit"
+                        class="form_body_item_btn btn  a_btn btn-outline-secondary">
+                    Search
                 </button>
             </form>
         </center>
@@ -35,7 +38,8 @@
             {% if article.content|length > 200 %}
             {{ article.content|slice:":200" }}...
             <a href="{% url 'blog:article_show' article.slug %}"
-               class="icon-link gap-1 icon-link-hover continue_reading">Continue reading
+               class="icon-link gap-1 icon-link-hover continue_reading">Continue
+                reading
                 <svg class="bi">-->
                     <use xlink:href="#chevron-right"/>
                 </svg>
@@ -48,15 +52,5 @@
     <hr>
     {% endfor %}
 </div>
-
-
-<!--<nav aria-label="Page navigation example">-->
-<!--    <ul class="pagination">-->
-<!--        <li class="page-item"><a class="page-link" href="?page=1{{ get_params }}">1</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="?page=2{{ get_params }}">2</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="?page=3{{ get_params }}">3</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="?page=4{{ get_params }}">4</a></li>-->
-<!--    </ul>-->
-<!--</nav>-->
-
+{% include 'blog/components/pagination.html' %}
 {% endblock%}

@@ -77,7 +77,7 @@
 
 a {
   text-decoration: none;
-  color: #000; /* Задайте початковий колір тексту посилань */
+  color: #000;
 }
 
 a:hover {
@@ -87,7 +87,6 @@ a:hover {
 .a_btn:hover {
     text-decoration: none;
 }
-
 /*--------------------*/
 
 
@@ -171,6 +170,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 /*-----Log in------*/
 
+
 /*-----Article Show------*/
 .author_category {
     display: flex;
@@ -181,11 +181,43 @@ h1, h2, h3, h4, h5, h6 {
 }
 /*-----Article Show------*/
 
+
 /*-----Article List------*/
 .continue_reading {
     font-weight: bold;
 }
 /*-----Article List------*/
+
+
+/*-----Pagination------*/
+.pagination-step {
+    display: flex;
+    justify-content: row;
+}
+
+.page-active {
+    border: 1px solid #000;
+    margin: 0 10px;
+}
+
+.page-link {
+    color: black;
+    background: #E9ECEF;
+    margin-left: None;
+}
+
+.page-item:not(:first-child) .page-link {
+    margin-left: 0;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: #6e747a;
+    background-color: var(--bs-pagination-hover-bg);
+    border-color: var(--bs-pagination-hover-border-color);
+}
+/*-----Pagination------*/
+
 
 /*-----Author------*/
 .author_img {

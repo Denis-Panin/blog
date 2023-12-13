@@ -1,0 +1,59 @@
+<nav aria-label="Page navigation example">
+    <div>
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <div class="pagination-step">
+                    <a class="page-link" href="?page=1">FIRST</a>
+                    <!--                <a class="page-link" aria-label="Previous" href="?page={{ page_obj.previous_page_number }}">-->
+                    <!--                    <span aria-hidden="true">&laquo;</span>-->
+                    <!--                </a>-->
+                </div>
+            </li>
+            {% endif %}
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.number|add:'-1' }}">
+                    {{ page_obj.number|add:'-1' }}
+                </a>
+            </li>
+            {% endif %}
+            <li class="page-item page-active">
+                <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+            </li>
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.number|add:'+1' }}">
+                    {{ page_obj.number|add:'+1' }}
+                </a>
+            </li>
+            <li class="page-item">
+                <div class="pagination-step">
+                    <!--                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">-->
+                    <!--                    <span aria-hidden="true">&raquo;</span>-->
+                    <!--                </a>-->
+                    <a class="page-link" href="?page=last">LAST</a>
+                </div>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+<!--    <div class="pagination-previous">-->
+<!--        <a class="form_body_item_btn btn btn-sm a_btn btn-outline-secondary" onclick="generateLink()" id="resultLink"-->
+<!--           href="">Go to page № </a>-->
+<!--        <form id="myForm">-->
+<!--            <input class="form_body_item_input" type="text" id="inputData" name="inputData">-->
+<!--        </form>-->
+<!--    </div>-->
+</nav>
+<!--<script>-->
+<!--    function generateLink() {-->
+<!--        // Отримайте значення введеного тексту з форми-->
+<!--        var inputData = document.getElementById("inputData").value;-->
+
+<!--        // Створіть посилання на основі введених даних-->
+<!--        var link = document.getElementById("resultLink");-->
+<!--        link.href = "?page=" + encodeURIComponent(inputData);-->
+<!--        link.textContent = "Generated Link: " + link.href;-->
+<!--    }-->
+<!--</script>-->

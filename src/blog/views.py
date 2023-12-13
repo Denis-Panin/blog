@@ -6,7 +6,12 @@ from django_filters.views import FilterView
 
 from .filrers import ArticleFilter, BookFilter
 from .forms import ArticleForm, CommentForm
-from .helpers import get_all_categories, get_new_articles, get_top_authors
+from .helpers import (
+    get_all_articles,
+    get_all_categories,
+    get_new_articles,
+    get_top_authors
+)
 from .models import Article, Author, Book, Category, ContactUs
 
 articles = get_new_articles()
@@ -116,6 +121,7 @@ def article_category(request, slug):
 
 class ArticleListView(FilterView):
     filterset_class = ArticleFilter
+    paginate_by = 10
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -125,7 +131,7 @@ class ArticleListView(FilterView):
             for key, val in self.request.GET.items() if key != 'page'
         )
         # code for searching articles
-        context['cnt'] = context['object_list'].count()
+        context['cnt'] = get_all_articles()
         context['title'] = 'Articles'
         context['articles'] = articles
         context['categories'] = categories
