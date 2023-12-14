@@ -5,7 +5,7 @@ from django.views.generic import CreateView
 from django_filters.views import FilterView
 
 from .filrers import ArticleFilter, BookFilter
-from .forms import ArticleForm, CommentForm
+from .forms import ArticleForm, CommentForm, ContactUsForm
 from .helpers import (
     get_all_articles,
     get_all_categories,
@@ -222,7 +222,7 @@ class BooksListView(FilterView):
 class ContactUsView(CreateView):
     success_url = reverse_lazy('blog:home_page')
     model = ContactUs
-    fields = ('name', 'email', 'subject', 'message')
+    form_class = ContactUsForm
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)

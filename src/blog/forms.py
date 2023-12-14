@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm, Textarea, TextInput
 
-from .models import Article, Author, Category, Comment, Subscriber
+from .models import Article, Author, Category, Comment, ContactUs, Subscriber
 
 
 class ArticleForm(ModelForm):
@@ -69,4 +69,28 @@ class CommentForm(forms.ModelForm):
         fields = ['comment_text']
         widgets = {
             'comment_text': forms.Textarea(attrs={'rows': 4}),
+        }
+
+
+class ContactUsForm(forms.ModelForm):
+    class Meta:
+        model = ContactUs
+        fields = ['name', 'email', 'subject', 'message']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': 'form_body_item_input',
+                'placeholder': 'name',
+            }),
+            'email': forms.EmailInput(attrs={
+                'class': 'form_body_item_input',
+                'placeholder': 'email',
+            }),
+            'subject': forms.TextInput(attrs={
+                'class': 'form_body_item_input',
+                'placeholder': 'subject',
+            }),
+            'message': forms.Textarea(attrs={
+                'class': 'form_body_item_input',
+                'placeholder': 'message',
+            }),
         }
