@@ -24,6 +24,9 @@
     <br>
     <div class="container_form contact_us">
         <div class="form_body">
+            <center>
+                <h1>Contact US</h1>
+            </center>
             <form action="{% url 'blog:contact_us' %}" method="POST">
                 {% csrf_token %}
                 <div class="form_body_item">
@@ -33,6 +36,10 @@
                     {{ form.message }}
                     <button class="form_body_item_btn btn  a_btn btn-outline-secondary">
                         Send
+                    </button>
+                    <button type="reset"
+                            class="form_body_item_btn btn  a_btn btn-outline-secondary btn-clean">
+                        Clean
                     </button>
                 </div>
             </form>

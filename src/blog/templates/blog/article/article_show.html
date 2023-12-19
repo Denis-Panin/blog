@@ -7,8 +7,8 @@
 <div>
     <h1>{{ title}}</h1>
     <br>
+<!--    <span class="article_description">{{ article.description }}</span>-->
     <div class="payload">
-        <span class="grey summary">{{ article.description }}</span>
         <div class="article_content">
             {{ article.content }}
         </div>
@@ -29,14 +29,18 @@
         </div>
         <br>
         <div>
+
             <h2>
-                Commetns
+                Сomments: {{ article.comments.all.count}}
             </h2>
             <div>
+                {% for comment in comments %}
                 <br>
-                {% for comment in article.comments.all %}
-                <strong><p>{{ comment.user }}</p></strong>
-                {{ comment.comment_text }}
+                <div class="author_category">
+                    <strong><p>{{ comment.user }}</p></strong>
+                    <strong><p>{{ comment.created|date:"j M Y - H:i" }}</p></strong>
+                </div>
+                <p>{{ comment.comment_text }}</p>
                 <hr>
                 {% endfor %}
             </div>

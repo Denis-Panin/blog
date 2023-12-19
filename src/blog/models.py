@@ -67,6 +67,7 @@ class Comment(models.Model):
                                 related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     comment_text = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
 
     # like = models.ForeignKey
     # dislike = models.ForeignKey

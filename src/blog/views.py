@@ -64,7 +64,8 @@ def show_article(request, slug):
         'title': article.title,
         'article': article,
         'articles': articles,
-        'categories': categories
+        'categories': categories,
+        'comments': reversed(article.comments.all())
     }
     return render(
         request,
