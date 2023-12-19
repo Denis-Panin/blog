@@ -19,7 +19,10 @@
                 </a>
                 <div>
                     {% if request.user.is_authenticated %}
-                    Hello, {{ request.user.username }}!
+                    Hello,
+                    <a href="#">
+                        <span style="font-weight:bold; margin-right: 10px;">{{ request.user.username }}</span>
+                    </a>
                     <a class="btn btn-sm a_btn btn-outline-secondary" href="{% url 'account:log_out' %}">EXIT</a>
                     {% else %}
                 </div>
