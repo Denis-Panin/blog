@@ -28,8 +28,13 @@
             </p>
         </div>
         <br>
+        <div class="update link">
+            <a href="{% url 'blog:add_comment' slug=article.slug %}" class="form_body_item_btn btn  a_btn btn-outline-secondary">
+                Add comment
+            </a>
+        </div>
+        <br>
         <div>
-
             <h2>
                 Сomments: {{ article.comments.all.count}}
             </h2>
@@ -55,11 +60,7 @@
         <!--            {% endif %}-->
         <!--        </div>-->
 
-        <div class="update link">
-            <a href="{% url 'blog:add_comment' slug=article.slug %}" class="form_body_item_btn btn  a_btn btn-outline-secondary">
-                Add comment
-            </a>
-        </div>
+
         <br>
     </div>
 </div>

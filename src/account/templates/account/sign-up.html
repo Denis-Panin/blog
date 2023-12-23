@@ -50,7 +50,9 @@
     </center>
     <div class="container_form">
         <div class="form_body">
-            <h2>Sign Up</h2>
+            <center>
+                <h2>Sign Up</h2>
+            </center>
             <form method="post">
                 {% csrf_token %}
                 <div class="form_body_item">
@@ -60,7 +62,7 @@
                     {{ form.password2 }}
                     <center><span><input type="checkbox" onclick="showPassword()"> Show password</span></center>
                     <button class="btn form_body_item_btn btn-sm btn-outline-secondary" type="submit">Sign Up</button>
-                    <button class="btn  form_body_item_btn btn-sm btn-outline-secondary" type="reset">Clean</button>
+<!--                    <button class="btn  form_body_item_btn btn-sm btn-outline-secondary btn-clean" type="reset">Clean</button>-->
                 </div>
             </form>
         </div>

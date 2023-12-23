@@ -38,7 +38,9 @@
     </center>
     <div class="container_form">
         <div class="form_body">
-            <h2>Log IN</h2>
+            <center>
+                <h2>Log IN</h2>
+            </center>
             <form method="post" action="{% url 'account:login' %}">
                 {% csrf_token %}
                 <div class="form_body_item">
