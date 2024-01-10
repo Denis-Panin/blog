@@ -7,16 +7,17 @@ from .models import Article, Author, Category, Comment, ContactUs, Subscriber
 class ArticleForm(ModelForm):
     author = forms.ModelChoiceField(
         queryset=Author.objects.all().order_by('first_name'),
-        empty_label='Оберіть автора...',
+        empty_label='Select author...',
         widget=forms.Select(attrs={
-            'class': 'form-control',
+            'class': 'form_body_item_input',
         }),
     )
+
     category = forms.ModelChoiceField(
         queryset=Category.objects.all().order_by('name'),
-        empty_label='Оберіть категорію...',
+        empty_label='Select category...',
         widget=forms.Select(attrs={
-            'class': 'form-control',
+            'class': 'form_body_item_input',
         }),
     )
 
@@ -25,16 +26,16 @@ class ArticleForm(ModelForm):
         fields = ['title', 'description', 'content', 'author', 'category']
         widgets = {
             'title': TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Название article',
+                'class': 'form_body_item_input',
+                'placeholder': 'title',
             }),
             'description': TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Краткое article',
+                'class': 'form_body_item_input',
+                'placeholder': 'description',
             }),
             'content': Textarea(attrs={
-                'class': 'form-control',
-                'placeholder': 'Содержимое',
+                'class': 'form_body_item_input',
+                'placeholder': 'text',
             })
         }
 

@@ -4,23 +4,32 @@
 {{ title }}
 {% endblock %}
 {% block content%}
-<div class="form">
-    <h1>Создать пост</h1>
-    <br>
-    <div>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.title }}
-            {{ form.description }}
-            {{ form.content|add_class:'search_form' }}
-            <br>
-            {{ form.author }}
-            <br>
-            {{ form.category }}
-            <br>
-            <button class="btn btn-lg btn-success">Сохранить</button>
-            <button type="reset" class="btn btn-lg btn-danger">Clean</button>
-        </form>
+<div class="container_form contact_us">
+    <div class="form_body">
+        <center>
+            <h1>Create ARTICLE</h1>
+        </center>
+        <br>
+        <div>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form_body_item">
+                    {{ form.title }}
+                    {{ form.description }}
+                    {{ form.content|add_class:'search_form' }}
+                    <br>
+                    {{ form.author }}
+                    <br>
+                    {{ form.category }}
+                    <br>
+                    <button class="form_body_item_btn btn  a_btn btn-outline-secondary">
+                        Save
+                    </button>
+                    <!--                <button type="reset" class="btn btn-lg btn-danger">Clean-->
+                    <!--                </button>-->
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock%}

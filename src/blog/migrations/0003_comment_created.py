@@ -4,9 +4,9 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blog', '0002_article_category_author_about_author_author_gender_and_more'),
+        ('blog',
+         '0002_article_category_author_about_author_author_gender_and_more'),
     ]
 
     operations = [
